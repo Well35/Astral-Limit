@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvg7v0uxtq3is"]
+
+[ext_resource type="Script" path="res://scripts/enemies/orbiter.gd" id="1_fvxus"]
+[ext_resource type="Texture2D" uid="uid://dfw0q517lpg3o" path="res://assets/sprites/enemies/Orbiter.png" id="2_5o10k"]
+[ext_resource type="AudioStream" uid="uid://dos1b4jyuoubi" path="res://assets/audio/EnemyDeathSound.wav" id="3_bs4vo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1ite"]
+size = Vector2(24, 46)
+
+[node name="Orbiter" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_fvxus")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_5o10k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l1ite")
+
+[node name="BulletTimer" type="Timer" parent="."]
+
+[node name="BulletStart" type="Marker2D" parent="."]
+position = Vector2(8, 1)
+
+[node name="dead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bs4vo")
+volume_db = -35.603
+
+[connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]
+[connection signal="finished" from="dead" to="." method="_on_dead_finished"]

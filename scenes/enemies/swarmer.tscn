@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://bml5bv47klenv"]
+
+[ext_resource type="Script" path="res://scripts/enemies/swarmer.gd" id="1_5w0ka"]
+[ext_resource type="Texture2D" uid="uid://3t80ni8xas8w" path="res://assets/sprites/enemies/Swarmer.png" id="2_brg8q"]
+[ext_resource type="AudioStream" uid="uid://dos1b4jyuoubi" path="res://assets/audio/EnemyDeathSound.wav" id="3_6sl0x"]
+
+[node name="Swarmer" type="CharacterBody2D"]
+scale = Vector2(1.2, 1.2)
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_5w0ka")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("2_brg8q")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-17, 1, -17, -2, -9, -9, -2, -16, 9, -5, 10, 3, -2, 16, -10, 6)
+
+[node name="dead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6sl0x")
+volume_db = -35.0
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Markers"]
+position = Vector2(-1.66667, 10.8333)
+
+[node name="Marker2D2" type="Marker2D" parent="Markers"]
+position = Vector2(-14.1667, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="Markers"]
+position = Vector2(-1.66667, -8.33333)
+
+[node name="Marker2D4" type="Marker2D" parent="Markers"]
+position = Vector2(5, 0)
+
+[connection signal="finished" from="dead" to="." method="_on_dead_finished"]

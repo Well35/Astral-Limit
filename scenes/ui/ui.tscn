@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxmu2cnh1jgje"]
+
+[ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_neafe"]
+[ext_resource type="Texture2D" uid="uid://cwfxbsabukfh0" path="res://assets/sprites/PlayerHealth.png" id="2_uv6mm"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_neafe")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -90.5
+offset_right = 90.5
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 400
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+
+[node name="PlayAreaWarning" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "RETURN TO PLAY AREA!"
+
+[node name="OutOfBoundsTimer" type="Label" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "3"
+horizontal_alignment = 1
+
+[node name="BossHealth" type="ProgressBar" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -298.0
+offset_top = -67.0
+offset_right = 300.0
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 500.0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_uv6mm")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_uv6mm")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_uv6mm")

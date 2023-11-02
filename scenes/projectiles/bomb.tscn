@@ -1,0 +1,79 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjue015qu34vx"]
+
+[ext_resource type="Texture2D" uid="uid://yeu6qasflmmw" path="res://assets/sprites/projectiles/Bomb.png" id="1_h4m73"]
+[ext_resource type="Script" path="res://scripts/projectiles/bomb.gd" id="1_x7nxm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eksr7"]
+radius = 6.0
+
+[node name="Bomb" type="Area2D"]
+script = ExtResource("1_x7nxm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_h4m73")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eksr7")
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="Markers"]
+position = Vector2(-6, 0)
+
+[node name="Marker2D9" type="Marker2D" parent="Markers"]
+position = Vector2(-5, -2)
+
+[node name="Marker2D10" type="Marker2D" parent="Markers"]
+position = Vector2(-2, -5)
+
+[node name="Marker2D11" type="Marker2D" parent="Markers"]
+position = Vector2(2, -5)
+
+[node name="Marker2D12" type="Marker2D" parent="Markers"]
+position = Vector2(5, -2)
+
+[node name="Marker2D13" type="Marker2D" parent="Markers"]
+position = Vector2(5, 2)
+
+[node name="Marker2D14" type="Marker2D" parent="Markers"]
+position = Vector2(2, 5)
+
+[node name="Marker2D15" type="Marker2D" parent="Markers"]
+position = Vector2(-2, 5)
+
+[node name="Marker2D16" type="Marker2D" parent="Markers"]
+position = Vector2(-5, 2)
+
+[node name="Marker2D2" type="Marker2D" parent="Markers"]
+position = Vector2(-4, -4)
+
+[node name="Marker2D3" type="Marker2D" parent="Markers"]
+position = Vector2(0, -6)
+
+[node name="Marker2D4" type="Marker2D" parent="Markers"]
+position = Vector2(4, -4)
+
+[node name="Marker2D5" type="Marker2D" parent="Markers"]
+position = Vector2(6, 0)
+
+[node name="Marker2D6" type="Marker2D" parent="Markers"]
+position = Vector2(4, 4)
+
+[node name="Marker2D7" type="Marker2D" parent="Markers"]
+position = Vector2(0, 6)
+
+[node name="Marker2D8" type="Marker2D" parent="Markers"]
+position = Vector2(-4, 4)
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Lasers" type="Node2D" parent="."]
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 11.0
+
+[connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

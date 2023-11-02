@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3x1k7g8l2x3f"]
+
+[ext_resource type="FontFile" uid="uid://ylj1ywxj6x5v" path="res://assets/fonts/coolvetica rg.otf" id="1_dp3h1"]
+
+[node name="BetweenLevelUI" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_right = 0.097
+anchor_bottom = 0.059
+offset_right = 0.759995
+offset_bottom = 0.279995
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.27451, 0.27451, 0.27451, 1)
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dp3h1")
+theme_override_font_sizes/font_size = 50
+text = "Sector: 2"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.264
+anchor_top = 0.944
+anchor_right = 0.74
+anchor_bottom = 1.0
+offset_left = -0.880005
+offset_top = -0.520081
+offset_right = -6.80005
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer2"]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomUI" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="GalaxyMapButton" type="Button" parent="MarginContainer2/BottomUI"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dp3h1")
+theme_override_font_sizes/font_size = 30
+text = "Galaxy Map"
+
+[node name="ShipCustomizeButton" type="Button" parent="MarginContainer2/BottomUI"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dp3h1")
+theme_override_font_sizes/font_size = 30
+text = "Ship Customization"
+
+[node name="CollectionButton" type="Button" parent="MarginContainer2/BottomUI"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_dp3h1")
+theme_override_font_sizes/font_size = 30
+text = "Collection"

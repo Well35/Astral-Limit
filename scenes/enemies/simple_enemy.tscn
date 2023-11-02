@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://covt3eqnjvnq5"]
+
+[ext_resource type="Script" path="res://scripts/enemies/simple_enemy.gd" id="1_5qmvj"]
+[ext_resource type="Texture2D" uid="uid://byvuftbvh6ad7" path="res://assets/sprites/enemies/SimpleEnemy.png" id="2_ucirm"]
+[ext_resource type="AudioStream" uid="uid://dos1b4jyuoubi" path="res://assets/audio/EnemyDeathSound.wav" id="3_84jup"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmjpu"]
+size = Vector2(32, 38.5714)
+
+[node name="SimpleEnemy" type="CharacterBody2D" groups=["Enemy", "Entity"]]
+scale = Vector2(1.4, 1.4)
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_5qmvj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.85714, -9.09495e-13)
+rotation = 1.5708
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_ucirm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qmjpu")
+
+[node name="BulletStart" type="Marker2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="LaserTimer" type="Timer" parent="."]
+
+[node name="dead" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_84jup")
+volume_db = -35.0
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="finished" from="dead" to="." method="_on_dead_finished"]

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://b22pui64brn0v"]
+
+[ext_resource type="Script" path="res://scripts/ui/settings_menu.gd" id="1_g8tw6"]
+[ext_resource type="AudioStream" uid="uid://1wox5e2i4ksf" path="res://assets/audio/MainMusicLoop.wav" id="2_cobgb"]
+
+[node name="SettingsMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_g8tw6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 1600
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+action_mode = 0
+text = "Invincibility"
+flat = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 1600
+
+[node name="Button" type="Button" parent="VBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cobgb")
+volume_db = -12.064
+
+[connection signal="toggled" from="VBoxContainer/MarginContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer2/Button" to="." method="_on_button_pressed"]

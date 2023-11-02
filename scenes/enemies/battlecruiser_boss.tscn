@@ -1,0 +1,157 @@
+[gd_scene load_steps=9 format=3 uid="uid://bpqthiuvl0rd2"]
+
+[ext_resource type="Script" path="res://scripts/enemies/battlecruiser_boss.gd" id="1_bix7m"]
+[ext_resource type="Texture2D" uid="uid://by5d2stgot0au" path="res://assets/sprites/enemies/BattlecruiserBoss.png" id="1_bxfrh"]
+[ext_resource type="Texture2D" uid="uid://dkw221uwpre6d" path="res://assets/sprites/enemies/BattlecruiserBossShield.png" id="3_y35qg"]
+[ext_resource type="Texture2D" uid="uid://dapoa6kbgxlh7" path="res://assets/sprites/enemies/BattlecruiserBossDead.png" id="4_wdtj4"]
+
+[sub_resource type="Animation" id="Animation_48tyl"]
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shield:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 15, 15, 15, 15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("DeadAnimation:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_dl34l"]
+resource_name = "dead"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DeadAnimation:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 13]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("DeadAnimation:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gg2kt"]
+resource_name = "shield"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shield:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0p20v"]
+_data = {
+"RESET": SubResource("Animation_48tyl"),
+"dead": SubResource("Animation_dl34l"),
+"shield": SubResource("Animation_gg2kt")
+}
+
+[node name="BattlecruiserBoss" type="CharacterBody2D"]
+rotation = 1.5708
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_bix7m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+rotation = 1.5708
+texture = ExtResource("1_bxfrh")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(39, 19, 6, 35, -29, 36, -37, 7, -30, -35, 7, -35, 24, -22, 37, -22, 51, -6, 51, 7)
+
+[node name="MiddleLaser" type="Marker2D" parent="."]
+position = Vector2(46, 1.00012)
+
+[node name="RightLaser" type="Marker2D" parent="."]
+position = Vector2(48.5, 6.00012)
+
+[node name="LeftLaser" type="Marker2D" parent="."]
+position = Vector2(49, -5.99988)
+
+[node name="LaserReloadTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="IntermissionTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="SwarmerSpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Stage2Timer" type="Timer" parent="."]
+wait_time = 30.0
+one_shot = true
+
+[node name="Shield" type="Sprite2D" parent="."]
+visible = false
+rotation = 1.5708
+texture = ExtResource("3_y35qg")
+hframes = 16
+
+[node name="DeadAnimation" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("4_wdtj4")
+hframes = 14
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0p20v")
+}
+
+[connection signal="timeout" from="LaserReloadTimer" to="." method="_on_laser_reload_timer_timeout"]
+[connection signal="timeout" from="IntermissionTimer" to="." method="_on_intermission_timer_timeout"]
+[connection signal="timeout" from="SwarmerSpawnTimer" to="." method="_on_swarmer_spawn_timer_timeout"]
+[connection signal="timeout" from="Stage2Timer" to="." method="_on_stage_2_timer_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

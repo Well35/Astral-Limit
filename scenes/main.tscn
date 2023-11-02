@@ -1,0 +1,279 @@
+[gd_scene load_steps=11 format=3 uid="uid://bc4yw12aifuxg"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_u5dka"]
+[ext_resource type="PackedScene" uid="uid://cpyakwandr3cb" path="res://scenes/player.tscn" id="1_wfums"]
+[ext_resource type="Texture2D" uid="uid://bpieuabpucv3o" path="res://assets/sprites/backgrounds/Nebula1.png" id="2_x8ee3"]
+[ext_resource type="PackedScene" uid="uid://bml5bv47klenv" path="res://scenes/enemies/swarmer.tscn" id="3_5yecd"]
+[ext_resource type="PackedScene" uid="uid://cvg7v0uxtq3is" path="res://scenes/enemies/orbiter.tscn" id="3_8g386"]
+[ext_resource type="PackedScene" uid="uid://covt3eqnjvnq5" path="res://scenes/enemies/simple_enemy.tscn" id="5_fiae3"]
+[ext_resource type="PackedScene" uid="uid://bpqthiuvl0rd2" path="res://scenes/enemies/battlecruiser_boss.tscn" id="7_072p8"]
+[ext_resource type="AudioStream" uid="uid://1wox5e2i4ksf" path="res://assets/audio/MainMusicLoop.wav" id="8_um5xn"]
+[ext_resource type="PackedScene" uid="uid://cxmu2cnh1jgje" path="res://scenes/ui/ui.tscn" id="9_pg4vq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36l1i"]
+size = Vector2(3658.45, 2857.14)
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_u5dka")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1024, 1024)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(469, 431)
+texture = ExtResource("2_x8ee3")
+region_rect = Rect2(6, 8, 724, 1006)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(2517, 431)
+texture = ExtResource("2_x8ee3")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(469, 2479)
+texture = ExtResource("2_x8ee3")
+
+[node name="Sprite2D4" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(2517, 2479)
+texture = ExtResource("2_x8ee3")
+
+[node name="Player" parent="." instance=ExtResource("1_wfums")]
+position = Vector2(1940, 1541)
+
+[node name="PlayArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea"]
+position = Vector2(2079.78, 1864.43)
+shape = SubResource("RectangleShape2D_36l1i")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Wave1" type="Node2D" parent="Enemies"]
+
+[node name="Orbiter2" parent="Enemies/Wave1" instance=ExtResource("3_8g386")]
+position = Vector2(-1068, 2037)
+
+[node name="Swarmer" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(445, -183)
+
+[node name="Swarmer4" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(876, -201)
+
+[node name="Swarmer5" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(1190, -93)
+
+[node name="Swarmer6" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(4019, 1029)
+
+[node name="Swarmer7" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(4118, 1747)
+
+[node name="Swarmer8" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(4181, 2474)
+
+[node name="Swarmer9" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(4217, 2070)
+
+[node name="Swarmer10" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(4441, 1325)
+
+[node name="Swarmer2" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(1786, -312)
+
+[node name="Swarmer3" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
+position = Vector2(5419, 2884)
+
+[node name="SimpleEnemy" parent="Enemies/Wave1" instance=ExtResource("5_fiae3")]
+position = Vector2(-1149, 765)
+
+[node name="SimpleEnemy3" parent="Enemies/Wave1" instance=ExtResource("5_fiae3")]
+position = Vector2(-179, 307)
+
+[node name="SimpleEnemy4" parent="Enemies/Wave1" instance=ExtResource("5_fiae3")]
+position = Vector2(1563, -250)
+
+[node name="SimpleEnemy2" parent="Enemies/Wave1" instance=ExtResource("5_fiae3")]
+position = Vector2(4391, 1025)
+
+[node name="Wave2" type="Node2D" parent="Enemies"]
+
+[node name="Orbiter" parent="Enemies/Wave2" instance=ExtResource("3_8g386")]
+position = Vector2(-946, 2961)
+
+[node name="Orbiter2" parent="Enemies/Wave2" instance=ExtResource("3_8g386")]
+position = Vector2(5193, 4128)
+
+[node name="Swarmer" parent="Enemies/Wave2" instance=ExtResource("3_5yecd")]
+position = Vector2(50, -191)
+
+[node name="Swarmer2" parent="Enemies/Wave2" instance=ExtResource("3_5yecd")]
+position = Vector2(1204, 3950)
+
+[node name="Swarmer3" parent="Enemies/Wave2" instance=ExtResource("3_5yecd")]
+position = Vector2(2932, 4102)
+
+[node name="Swarmer4" parent="Enemies/Wave2" instance=ExtResource("3_5yecd")]
+position = Vector2(-1015, 2348)
+
+[node name="Swarmer5" parent="Enemies/Wave2" instance=ExtResource("3_5yecd")]
+position = Vector2(-1015, 2348)
+
+[node name="Swarmer6" parent="Enemies/Wave2" instance=ExtResource("3_5yecd")]
+position = Vector2(-486, 3888)
+
+[node name="Swarmer7" parent="Enemies/Wave2" instance=ExtResource("3_5yecd")]
+position = Vector2(4875, 490)
+
+[node name="SimpleEnemy2" parent="Enemies/Wave2" instance=ExtResource("5_fiae3")]
+position = Vector2(-870, 1267)
+
+[node name="SimpleEnemy3" parent="Enemies/Wave2" instance=ExtResource("5_fiae3")]
+position = Vector2(4899, 995)
+
+[node name="SimpleEnemy4" parent="Enemies/Wave2" instance=ExtResource("5_fiae3")]
+position = Vector2(4453, -130)
+
+[node name="SimpleEnemy5" parent="Enemies/Wave2" instance=ExtResource("5_fiae3")]
+position = Vector2(3985, -221)
+
+[node name="Wave3" type="Node2D" parent="Enemies"]
+
+[node name="SimpleEnemy" parent="Enemies/Wave3" instance=ExtResource("5_fiae3")]
+position = Vector2(1329, -181)
+
+[node name="SimpleEnemy2" parent="Enemies/Wave3" instance=ExtResource("5_fiae3")]
+position = Vector2(-917, 1856)
+
+[node name="Orbiter" parent="Enemies/Wave3" instance=ExtResource("3_8g386")]
+position = Vector2(-871, 2202)
+
+[node name="Orbiter2" parent="Enemies/Wave3" instance=ExtResource("3_8g386")]
+position = Vector2(-1057, 2591)
+
+[node name="Orbiter4" parent="Enemies/Wave3" instance=ExtResource("3_8g386")]
+position = Vector2(4901, 2485)
+
+[node name="Orbiter3" parent="Enemies/Wave3" instance=ExtResource("3_8g386")]
+position = Vector2(1445, 3869)
+
+[node name="Swarmer" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(1985, -313)
+
+[node name="Swarmer2" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(2534, 4037)
+
+[node name="Swarmer3" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(5131, 1477)
+
+[node name="Swarmer4" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(4901, 4106)
+
+[node name="Swarmer5" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(2648, 4009)
+
+[node name="Swarmer6" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(5520, 2928)
+
+[node name="Swarmer7" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(5300, 2882)
+
+[node name="Swarmer8" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(-1045, 2173)
+rotation = -3.05894
+
+[node name="Swarmer9" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(-11.0002, 4272)
+rotation = -3.05894
+
+[node name="Swarmer10" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(812, 3849)
+rotation = -3.05894
+
+[node name="Swarmer11" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(148, 3872)
+rotation = -3.05894
+
+[node name="Swarmer12" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(4135, 3842)
+rotation = -3.05894
+
+[node name="Swarmer13" parent="Enemies/Wave3" instance=ExtResource("3_5yecd")]
+position = Vector2(3727, 3865)
+rotation = -3.05894
+
+[node name="Boss" type="Node2D" parent="Enemies"]
+
+[node name="BattlecruiserBoss" parent="Enemies/Boss" instance=ExtResource("7_072p8")]
+position = Vector2(2302, -282)
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_um5xn")
+volume_db = -12.064
+
+[node name="BossStart" type="Marker2D" parent="."]
+position = Vector2(1979, 465)
+
+[node name="BossLeftStrafe" type="Marker2D" parent="."]
+position = Vector2(933, 458)
+
+[node name="BossRightStrafe" type="Marker2D" parent="."]
+position = Vector2(3136, 447)
+
+[node name="UI" parent="." instance=ExtResource("9_pg4vq")]
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="BossBombTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="OutOfBoundsTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="SwarmerSpawns" type="Node2D" parent="."]
+
+[node name="SwarmerSpawn1" type="Marker2D" parent="SwarmerSpawns"]
+position = Vector2(-1227, 2551)
+
+[node name="SwarmerSpawn2" type="Marker2D" parent="SwarmerSpawns"]
+position = Vector2(5116, 2031)
+
+[connection signal="player_shoot" from="Player" to="." method="_on_player_player_shoot"]
+[connection signal="body_entered" from="PlayArea" to="." method="_on_play_area_body_entered"]
+[connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
+[connection signal="orbiter_shoot" from="Enemies/Wave1/Orbiter2" to="." method="_on_orbiter_orbiter_shoot"]
+[connection signal="enemy_laser" from="Enemies/Wave1/SimpleEnemy" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="enemy_laser" from="Enemies/Wave1/SimpleEnemy3" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="enemy_laser" from="Enemies/Wave1/SimpleEnemy4" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="enemy_laser" from="Enemies/Wave1/SimpleEnemy2" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="orbiter_shoot" from="Enemies/Wave2/Orbiter" to="." method="_on_orbiter_orbiter_shoot"]
+[connection signal="orbiter_shoot" from="Enemies/Wave2/Orbiter2" to="." method="_on_orbiter_orbiter_shoot"]
+[connection signal="enemy_laser" from="Enemies/Wave2/SimpleEnemy2" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="enemy_laser" from="Enemies/Wave2/SimpleEnemy3" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="enemy_laser" from="Enemies/Wave2/SimpleEnemy4" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="enemy_laser" from="Enemies/Wave2/SimpleEnemy5" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="enemy_laser" from="Enemies/Wave3/SimpleEnemy" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="enemy_laser" from="Enemies/Wave3/SimpleEnemy2" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="orbiter_shoot" from="Enemies/Wave3/Orbiter" to="." method="_on_orbiter_orbiter_shoot"]
+[connection signal="orbiter_shoot" from="Enemies/Wave3/Orbiter2" to="." method="_on_orbiter_orbiter_shoot"]
+[connection signal="orbiter_shoot" from="Enemies/Wave3/Orbiter4" to="." method="_on_orbiter_orbiter_shoot"]
+[connection signal="orbiter_shoot" from="Enemies/Wave3/Orbiter3" to="." method="_on_orbiter_orbiter_shoot"]
+[connection signal="bomb" from="Enemies/Boss/BattlecruiserBoss" to="." method="_on_battlecruiser_boss_bomb"]
+[connection signal="enemy_laser" from="Enemies/Boss/BattlecruiserBoss" to="." method="_on_simple_enemy_enemy_laser"]
+[connection signal="on_screen" from="Enemies/Boss/BattlecruiserBoss" to="UI" method="_on_battlecruiser_boss_on_screen"]
+[connection signal="spawn_swarmers" from="Enemies/Boss/BattlecruiserBoss" to="." method="_on_battlecruiser_boss_spawn_swarmers"]
+[connection signal="stage2_over" from="Enemies/Boss/BattlecruiserBoss" to="." method="_on_battlecruiser_boss_stage_2_over"]
+[connection signal="timeout" from="BossBombTimer" to="." method="_on_boss_bomb_timer_timeout"]
+[connection signal="timeout" from="OutOfBoundsTimer" to="." method="_on_out_of_bounds_timer_timeout"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://vja3w02wlrsu"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/enemy_laser.gd" id="1_b2xls"]
+[ext_resource type="Texture2D" uid="uid://b4ofe83hgkhpb" path="res://assets/sprites/projectiles/PLaser.png" id="2_7s358"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8bvm"]
+size = Vector2(22, 32)
+
+[node name="EnemyLaser" type="Area2D"]
+scale = Vector2(0.8, 0.8)
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_b2xls")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("2_7s358")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s8bvm")
+
+[node name="LifeTime" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="LifeTime" to="." method="_on_life_time_timeout"]

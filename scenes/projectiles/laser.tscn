@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=3 uid="uid://bonbbmt7vyrj1"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/laser.gd" id="1_1u2yi"]
+[ext_resource type="Texture2D" uid="uid://b15vy3c1sch2a" path="res://assets/sprites/projectiles/BLaser.png" id="2_ry22r"]
+[ext_resource type="Texture2D" uid="uid://dccionh6usu0p" path="res://assets/sprites/projectiles/Explosion.png" id="3_ia218"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f63d"]
+size = Vector2(22, 32)
+
+[sub_resource type="Animation" id="Animation_wupdh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explode:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_j7ggl"]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explode:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fyoab"]
+_data = {
+"RESET": SubResource("Animation_wupdh"),
+"explode": SubResource("Animation_j7ggl")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slb6q"]
+atlas = ExtResource("3_ia218")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oswic"]
+atlas = ExtResource("3_ia218")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h4kl"]
+atlas = ExtResource("3_ia218")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqw1d"]
+atlas = ExtResource("3_ia218")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2408"]
+atlas = ExtResource("3_ia218")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f0pt6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slb6q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oswic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6h4kl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqw1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2408")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 13.0
+}]
+
+[node name="Laser" type="Area2D"]
+collision_layer = 2
+collision_mask = 12
+script = ExtResource("1_1u2yi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("2_ry22r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1f63d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fyoab")
+}
+
+[node name="explode" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(1.7, 1.7)
+sprite_frames = SubResource("SpriteFrames_f0pt6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="explode" to="." method="_on_explode_animation_finished"]

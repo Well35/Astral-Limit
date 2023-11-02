@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://bmjppq1m2sa11"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_apkbg"]
+[ext_resource type="Texture2D" uid="uid://h8o5lgx8itr" path="res://assets/sprites/backgrounds/MainMenuBackground.png" id="2_3fyvn"]
+[ext_resource type="Texture2D" uid="uid://c4jh1h4ipq30y" path="res://assets/sprites/text/ship1.png" id="3_477fx"]
+[ext_resource type="Texture2D" uid="uid://b3sqgvcveoswm" path="res://assets/sprites/text/play.png" id="4_ey3d6"]
+[ext_resource type="Texture2D" uid="uid://4h43hc8ctr76" path="res://assets/sprites/text/settings.png" id="5_2lfex"]
+[ext_resource type="Texture2D" uid="uid://cue8vy2tcltvo" path="res://assets/sprites/text/exit.png" id="6_2ayrx"]
+[ext_resource type="AudioStream" uid="uid://1wox5e2i4ksf" path="res://assets/audio/MainMusicLoop.wav" id="7_nng6f"]
+
+[sub_resource type="Animation" id="Animation_jpbv5"]
+resource_name = "fade_black"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_figpy"]
+_data = {
+"fade_black": SubResource("Animation_jpbv5")
+}
+
+[node name="Main Menu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_apkbg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1054, 540)
+texture = ExtResource("2_3fyvn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 150
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_477fx")
+stretch_mode = 3
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 800
+theme_override_constants/margin_right = 800
+
+[node name="Play" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+action_mode = 0
+icon = ExtResource("4_ey3d6")
+icon_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 800
+theme_override_constants/margin_right = 800
+
+[node name="Settings" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+action_mode = 0
+icon = ExtResource("5_2lfex")
+icon_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 800
+theme_override_constants/margin_right = 800
+
+[node name="Exit" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer3"]
+layout_mode = 2
+action_mode = 0
+icon = ExtResource("6_2ayrx")
+icon_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_nng6f")
+volume_db = -12.064
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_figpy")
+}
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/MarginContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/MarginContainer2/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/MarginContainer3/Exit" to="." method="_on_exit_pressed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

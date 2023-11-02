@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpyakwandr3cb"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2fhr5"]
+[ext_resource type="Texture2D" uid="uid://7st4ugcfdc0j" path="res://assets/sprites/player/Player.png" id="2_0nv6i"]
+[ext_resource type="AudioStream" uid="uid://ejwukiqruik7" path="res://assets/audio/gunfire1.wav" id="3_pe47e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rf7db"]
+size = Vector2(74, 32)
+
+[node name="Player" type="CharacterBody2D" groups=["Entity"]]
+collision_mask = 14
+script = ExtResource("1_2fhr5")
+
+[node name="BeamShip" type="Sprite2D" parent="."]
+texture = ExtResource("2_0nv6i")
+
+[node name="BeamShipCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rf7db")
+
+[node name="BulletStart" type="Marker2D" parent="."]
+position = Vector2(37, 0)
+
+[node name="LaserTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="ShootingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pe47e")
+volume_db = -16.866
+
+[node name="ImmuneTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.9, 0.9)
+limit_left = -700
+limit_top = 0
+limit_right = 4700
+limit_bottom = 3700
+editor_draw_limits = true
+
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
+[connection signal="timeout" from="ImmuneTimer" to="." method="_on_immune_timer_timeout"]

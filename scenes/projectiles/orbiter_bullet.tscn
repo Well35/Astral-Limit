@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cenrdivskpqui"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/orbiter_bullet.gd" id="1_4dn03"]
+[ext_resource type="Texture2D" uid="uid://b7lnqi4epwr2q" path="res://assets/sprites/projectiles/OrbiterLaser.png" id="2_8t4be"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ximo"]
+radius = 5.0
+height = 56.0
+
+[node name="OrbiterBullet" type="Area2D"]
+scale = Vector2(0.6, 0.6)
+collision_layer = 2
+collision_mask = 11
+script = ExtResource("1_4dn03")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+scale = Vector2(0.375, 0.375)
+texture = ExtResource("2_8t4be")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8ximo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

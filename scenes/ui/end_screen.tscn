@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvxrkwctxt4hl"]
+
+[ext_resource type="Texture2D" uid="uid://cu5vqnmjbt1b2" path="res://assets/sprites/backgrounds/EndScreenBackground.png" id="1_6rfiw"]
+[ext_resource type="Script" path="res://scripts/ui/end_screen.gd" id="1_eqf4s"]
+[ext_resource type="Texture2D" uid="uid://buyl4hodonv0x" path="res://assets/sprites/text/youwon.png" id="2_8yljc"]
+[ext_resource type="Texture2D" uid="uid://cue8vy2tcltvo" path="res://assets/sprites/text/exit.png" id="3_24410"]
+[ext_resource type="AudioStream" uid="uid://1wox5e2i4ksf" path="res://assets/audio/MainMusicLoop.wav" id="5_pd7gq"]
+
+[node name="EndScreen" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_eqf4s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_6rfiw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_8yljc")
+stretch_mode = 3
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 800
+theme_override_constants/margin_right = 800
+
+[node name="Exit" type="Button" parent="VBoxContainer/MarginContainer3"]
+layout_mode = 2
+action_mode = 0
+icon = ExtResource("3_24410")
+icon_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_pd7gq")
+volume_db = -12.064
+
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/Exit" to="." method="_on_exit_pressed"]

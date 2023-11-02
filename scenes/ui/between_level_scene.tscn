@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://ct1w7tfrllg5d"]
+
+[ext_resource type="Script" path="res://scripts/ui/between_level_scene.gd" id="1_0wowp"]
+[ext_resource type="PackedScene" uid="uid://c3x1k7g8l2x3f" path="res://scenes/ui/between_level_ui.tscn" id="1_bporh"]
+[ext_resource type="Texture2D" uid="uid://bcwnfgwd7gaj1" path="res://assets/sprites/backgrounds/GalaxyMapBackground.png" id="2_351iu"]
+[ext_resource type="Script" path="res://scripts/ui/Camera2D.gd" id="3_s8gdr"]
+[ext_resource type="Texture2D" uid="uid://bt11adu0v17vi" path="res://assets/sprites/button_red.png" id="5_5oy8r"]
+[ext_resource type="Texture2D" uid="uid://bq8ch4f71hvu6" path="res://assets/sprites/button_red_hovered.png" id="6_u0yug"]
+
+[node name="BetweenLevelScene" type="Node2D"]
+script = ExtResource("1_0wowp")
+
+[node name="GalaxyMap" type="Sprite2D" parent="."]
+position = Vector2(1500, -420)
+texture = ExtResource("2_351iu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+limit_left = 0
+limit_top = -1920
+limit_right = 3000
+limit_bottom = 1080
+editor_draw_limits = true
+script = ExtResource("3_s8gdr")
+
+[node name="BetweenLevelUI" parent="." instance=ExtResource("1_bporh")]
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2(503, 531)
+points = PackedVector2Array(19, 17, 535, -283)
+width = 2.0
+default_color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="Button" type="TextureButton" parent="."]
+offset_left = 503.0
+offset_top = 531.0
+offset_right = 631.0
+offset_bottom = 659.0
+scale = Vector2(0.3, 0.3)
+tooltip_text = "Level: 1
+Difficulty: Easy
+Boss: ???"
+texture_normal = ExtResource("5_5oy8r")
+texture_hover = ExtResource("6_u0yug")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
