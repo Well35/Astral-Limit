@@ -65,7 +65,6 @@ theme_override_constants/margin_left = 800
 theme_override_constants/margin_right = 800
 
 [node name="Play" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer"]
-visible = false
 layout_mode = 2
 action_mode = 0
 icon = ExtResource("4_ey3d6")
@@ -88,7 +87,6 @@ theme_override_constants/margin_left = 800
 theme_override_constants/margin_right = 800
 
 [node name="Exit" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer3"]
-visible = false
 layout_mode = 2
 action_mode = 0
 icon = ExtResource("6_2ayrx")
