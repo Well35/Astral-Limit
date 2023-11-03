@@ -4,6 +4,8 @@
 
 <p align="center">
   <strong>Welcome to Astral Limit, a fast-paced, ship based, bullet hell game made using the Godot Engine</strong>
+
+  <img width="600" height="500" src="gameplay_example.png">
 </p>
 
 ## Getting the game
