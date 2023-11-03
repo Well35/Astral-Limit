@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_apkbg"]
 [ext_resource type="Texture2D" uid="uid://h8o5lgx8itr" path="res://assets/sprites/backgrounds/MainMenuBackground.png" id="2_3fyvn"]
-[ext_resource type="Texture2D" uid="uid://c4jh1h4ipq30y" path="res://assets/sprites/text/ship1.png" id="3_477fx"]
+[ext_resource type="Texture2D" uid="uid://b7kmadtuhlyq3" path="res://assets/sprites/text/title.png" id="3_aenmy"]
 [ext_resource type="Texture2D" uid="uid://b3sqgvcveoswm" path="res://assets/sprites/text/play.png" id="4_ey3d6"]
 [ext_resource type="Texture2D" uid="uid://4h43hc8ctr76" path="res://assets/sprites/text/settings.png" id="5_2lfex"]
 [ext_resource type="Texture2D" uid="uid://cue8vy2tcltvo" path="res://assets/sprites/text/exit.png" id="6_2ayrx"]
@@ -51,7 +51,7 @@ theme_override_constants/separation = 150
 
 [node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("3_477fx")
+texture = ExtResource("3_aenmy")
 stretch_mode = 3
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer"]
@@ -65,6 +65,7 @@ theme_override_constants/margin_left = 800
 theme_override_constants/margin_right = 800
 
 [node name="Play" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer"]
+visible = false
 layout_mode = 2
 action_mode = 0
 icon = ExtResource("4_ey3d6")
@@ -87,6 +88,7 @@ theme_override_constants/margin_left = 800
 theme_override_constants/margin_right = 800
 
 [node name="Exit" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer3"]
+visible = false
 layout_mode = 2
 action_mode = 0
 icon = ExtResource("6_2ayrx")

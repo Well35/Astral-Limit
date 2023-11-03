@@ -52,7 +52,7 @@ func _process(delta):
 		wave3_freed = true
 		$Enemies/Boss/BattlecruiserBoss.process_mode = Node.PROCESS_MODE_ALWAYS
 	if Input.is_action_pressed("close"):
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 	if boss_stage2:
 		var x = randi_range(0, 1000)
 		var y = randi_range(0, 1000)
@@ -120,7 +120,7 @@ func _on_play_area_body_exited(body):
 
 
 func _on_out_of_bounds_timer_timeout():
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 
 
 func _on_play_area_body_entered(body):
