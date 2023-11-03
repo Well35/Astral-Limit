@@ -17,10 +17,11 @@ var wave3_freed: bool = false
 var boss_stage2: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$UI/ColorRect.show()
-	var fade_time = 1
-	var tween = get_tree().create_tween()
-	tween.tween_property($UI/ColorRect, "modulate:a", 0, fade_time)
+	#$UI/ColorRect.show()
+	#var fade_time = 1
+	#var tween = get_tree().create_tween()
+	#tween.tween_property($UI/ColorRect, "modulate:a", 0, fade_time)
+	Globals.fade_in_scene($UI/ColorRect)
 	$AudioStreamPlayer.play(Globals.music_pos)
 	Globals.boss_dest = $BossStart.position
 	Globals.boss_right = $BossRightStrafe.position
@@ -99,9 +100,9 @@ func _on_battlecruiser_boss_bomb():
 	boss_stage2 = true
 
 func _on_boss_bomb_timer_timeout():
-	for i in range(3):
-		var x = randi_range(0, 1000)
-		var y = randi_range(0, 1000)
+	for i in range(5):
+		var x = randi_range(500, 3500)
+		var y = randi_range(500, 3000)
 		var pos: Vector2
 		pos.x = x
 		pos.y = y
@@ -111,9 +112,6 @@ func _on_boss_bomb_timer_timeout():
 
 func _on_battlecruiser_boss_stage_2_over():
 	$BossBombTimer.stop()
-
-
-
 
 func _on_play_area_body_exited(body):
 	if get_node("Player") == body:

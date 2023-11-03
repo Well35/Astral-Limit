@@ -1,11 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://covt3eqnjvnq5"]
+[gd_scene load_steps=9 format=3 uid="uid://covt3eqnjvnq5"]
 
 [ext_resource type="Script" path="res://scripts/enemies/simple_enemy.gd" id="1_5qmvj"]
 [ext_resource type="Texture2D" uid="uid://byvuftbvh6ad7" path="res://assets/sprites/enemies/SimpleEnemy.png" id="2_ucirm"]
 [ext_resource type="AudioStream" uid="uid://dos1b4jyuoubi" path="res://assets/audio/EnemyDeathSound.wav" id="3_84jup"]
+[ext_resource type="Texture2D" uid="uid://b8pyqv8pcqt1o" path="res://assets/sprites/projectiles/DeathExplosion.png" id="4_u2mso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmjpu"]
 size = Vector2(32, 38.5714)
+
+[sub_resource type="Animation" id="Animation_2thak"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8]
+}
+
+[sub_resource type="Animation" id="Animation_j1wbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovcu3"]
+_data = {
+"RESET": SubResource("Animation_j1wbs"),
+"dead": SubResource("Animation_2thak")
+}
 
 [node name="SimpleEnemy" type="CharacterBody2D" groups=["Enemy", "Entity"]]
 scale = Vector2(1.4, 1.4)
@@ -31,5 +68,17 @@ position = Vector2(16, 0)
 stream = ExtResource("3_84jup")
 volume_db = -35.0
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ovcu3")
+}
+
+[node name="explosion" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("4_u2mso")
+hframes = 9
+
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="finished" from="dead" to="." method="_on_dead_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

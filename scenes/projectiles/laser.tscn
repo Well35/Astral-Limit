@@ -1,8 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://bonbbmt7vyrj1"]
+[gd_scene load_steps=20 format=3 uid="uid://bonbbmt7vyrj1"]
 
 [ext_resource type="Script" path="res://scripts/projectiles/laser.gd" id="1_1u2yi"]
 [ext_resource type="Texture2D" uid="uid://b15vy3c1sch2a" path="res://assets/sprites/projectiles/BLaser.png" id="2_ry22r"]
 [ext_resource type="Texture2D" uid="uid://dccionh6usu0p" path="res://assets/sprites/projectiles/Explosion.png" id="3_ia218"]
+[ext_resource type="Script" path="res://scripts/Trail.gd" id="4_kcuyd"]
+[ext_resource type="Texture2D" uid="uid://cm33tsbltjy8d" path="res://assets/sprites/button_grey.png" id="5_ramg2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k7srg"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_0e7bx"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cuii4"]
+offsets = PackedFloat32Array(0, 0.00662252, 0.496689, 1)
+colors = PackedColorArray(0, 0, 0.192157, 0, 0.0476606, 0.256733, 0.389039, 1, 0.313726, 0.611765, 0.670588, 0.639216, 1, 1, 1, 0.662745)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1f63d"]
 size = Vector2(22, 32)
@@ -86,10 +99,22 @@ animations = [{
 "speed": 13.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5grja"]
+blend_mode = 1
+
 [node name="Laser" type="Area2D"]
 collision_layer = 2
 collision_mask = 12
 script = ExtResource("1_1u2yi")
+
+[node name="Trail" type="Line2D" parent="."]
+material = SubResource("CanvasItemMaterial_k7srg")
+points = PackedVector2Array(-2, 52, 0, 0)
+width = 5.0
+width_curve = SubResource("Curve_0e7bx")
+default_color = Color(0.262745, 1, 1, 1)
+gradient = SubResource("Gradient_cuii4")
+script = ExtResource("4_kcuyd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
@@ -107,6 +132,24 @@ libraries = {
 visible = false
 scale = Vector2(1.7, 1.7)
 sprite_frames = SubResource("SpriteFrames_f0pt6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_5grja")
+position = Vector2(0, -10)
+emitting = false
+amount = 30
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+texture = ExtResource("5_ramg2")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_min = 0.01
+scale_amount_max = 0.03
+color = Color(1, 1, 1, 0.909804)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="explode" to="." method="_on_explode_animation_finished"]

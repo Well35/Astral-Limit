@@ -20,4 +20,4 @@ func _on_exit_pressed():
 
 func _on_animation_player_animation_finished(anim_name):
 	Globals.music_pos = $AudioStreamPlayer.get_playback_position()
-	get_tree().change_scene_to_file("res://scenes/main.tscn")
+	get_tree().change_scene_to_file("res://scenes/ui/between_level_scene.tscn")

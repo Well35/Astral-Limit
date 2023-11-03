@@ -8,6 +8,7 @@
 size = Vector2(74, 32)
 
 [node name="Player" type="CharacterBody2D" groups=["Entity"]]
+collision_layer = 17
 collision_mask = 14
 script = ExtResource("1_2fhr5")
 
@@ -39,5 +40,15 @@ limit_right = 4700
 limit_bottom = 3700
 editor_draw_limits = true
 
+[node name="DashDuration" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
 [connection signal="timeout" from="ImmuneTimer" to="." method="_on_immune_timer_timeout"]
+[connection signal="timeout" from="DashDuration" to="." method="_on_dash_duration_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]

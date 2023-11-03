@@ -19,6 +19,8 @@ func _process(delta):
 func _on_body_entered(body):
 	$explode.show()
 	$Sprite2D.hide()
+	$Trail.hide()
+	#$CPUParticles2D.emitting = true
 	$explode.play("explode")
 	exploded = true
 	#queue_free()

@@ -1,11 +1,16 @@
 extends CharacterBody2D
 
 var speed: int = 340
+var dash_speed: int = 700
 var can_shoot: bool = true
 var is_shooting: bool = false
 var accel = 3000
 var friction = 600
 var immune: bool = false
+var can_dash: bool = true
+var is_dashing: bool = false
+var direction: Vector2
+var dash_direction: Vector2
 
 signal player_shoot(pos, dir)
 
@@ -13,7 +18,8 @@ func _ready():
 	Globals.player_pos = position
 
 func _process(delta):
-	var direction = Input.get_vector("left", "right", "up", "down")
+	if not is_dashing:
+		direction = Input.get_vector("left", "right", "up", "down")
 	if direction == Vector2.ZERO:
 		if velocity.length() > friction * delta:
 			velocity -= velocity.normalized() * friction * delta
@@ -22,6 +28,9 @@ func _process(delta):
 	else:
 		velocity += direction * accel * delta
 		velocity = velocity.limit_length(speed)
+	if is_dashing:
+		dash_direction = direction
+		velocity = dash_direction * dash_speed
 	move_and_slide()
 	look_at(get_global_mouse_position())
 	Globals.player_pos = position
@@ -35,9 +44,17 @@ func _process(delta):
 		is_shooting = false
 		$ShootingSound.stop()
 		$ShootingSound.seek(0)
+	if Input.is_action_pressed("dash") and can_dash:
+		$DashCooldown.start()
+		$DashDuration.start()
+		set_collision_layer_value(1, false)
+		can_dash = false
+		is_dashing = true
+		immune = true
 	if is_shooting:
 		if $ShootingSound.get_playback_position() == 0:
 			$ShootingSound.play()
+	Globals.player_dashing = is_dashing
 
 func _on_laser_timer_timeout():
 	can_shoot = true
@@ -59,3 +76,11 @@ func turn_off_ship(sprite, collision):
 func turn_on_ship(sprite, collision):
 	sprite.show()
 	collision.disabled = false
+
+func _on_dash_cooldown_timeout():
+	can_dash = true
+
+func _on_dash_duration_timeout():
+	is_dashing = false
+	set_collision_layer_value(1, true)
+	immune = false

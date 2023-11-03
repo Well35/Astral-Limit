@@ -17,18 +17,22 @@ func _process(delta):
 	destination = Globals.player_pos
 	if (health <= 0) and not is_dead:
 		is_dead = true
+		velocity = Vector2.ZERO
+		direction = Vector2.ZERO
 		$dead.play()
+		$explosion.show()
+		$AnimationPlayer.play("dead")
 		$Sprite2D.hide()
 		$CollisionShape2D.disabled = true
 		#queue_free()
-	if not at_destination:
+	if not at_destination and not is_dead:
 		direction = (destination - position).normalized()
 		look_at(destination)
 		velocity = direction * speed
 		move_and_slide()
 		if position.distance_to(destination) < 200:
 			at_destination = true
-	else:
+	elif not is_dead:
 		look_at(Globals.player_pos)
 		if can_shoot and not is_dead:
 			$LaserTimer.start()
@@ -44,4 +48,8 @@ func hit(dmg):
 
 
 func _on_dead_finished():
+	pass
+
+
+func _on_animation_player_animation_finished(anim_name):
 	queue_free()

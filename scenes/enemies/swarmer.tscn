@@ -1,8 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://bml5bv47klenv"]
+[gd_scene load_steps=8 format=3 uid="uid://bml5bv47klenv"]
 
 [ext_resource type="Script" path="res://scripts/enemies/swarmer.gd" id="1_5w0ka"]
 [ext_resource type="Texture2D" uid="uid://3t80ni8xas8w" path="res://assets/sprites/enemies/Swarmer.png" id="2_brg8q"]
 [ext_resource type="AudioStream" uid="uid://dos1b4jyuoubi" path="res://assets/audio/EnemyDeathSound.wav" id="3_6sl0x"]
+[ext_resource type="Texture2D" uid="uid://b8pyqv8pcqt1o" path="res://assets/sprites/projectiles/DeathExplosion.png" id="4_rfx61"]
+
+[sub_resource type="Animation" id="Animation_2thak"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 8]
+}
+
+[sub_resource type="Animation" id="Animation_j1wbs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosion:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ovcu3"]
+_data = {
+"RESET": SubResource("Animation_j1wbs"),
+"dead": SubResource("Animation_2thak")
+}
 
 [node name="Swarmer" type="CharacterBody2D"]
 scale = Vector2(1.2, 1.2)
@@ -22,6 +59,7 @@ stream = ExtResource("3_6sl0x")
 volume_db = -35.0
 
 [node name="Markers" type="Node2D" parent="."]
+visible = false
 
 [node name="Marker2D" type="Marker2D" parent="Markers"]
 position = Vector2(-1.66667, 10.8333)
@@ -35,4 +73,16 @@ position = Vector2(-1.66667, -8.33333)
 [node name="Marker2D4" type="Marker2D" parent="Markers"]
 position = Vector2(5, 0)
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ovcu3")
+}
+
+[node name="explosion" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("4_rfx61")
+hframes = 9
+
 [connection signal="finished" from="dead" to="." method="_on_dead_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

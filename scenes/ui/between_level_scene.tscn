@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct1w7tfrllg5d"]
+[gd_scene load_steps=9 format=3 uid="uid://ct1w7tfrllg5d"]
 
 [ext_resource type="Script" path="res://scripts/ui/between_level_scene.gd" id="1_0wowp"]
 [ext_resource type="PackedScene" uid="uid://c3x1k7g8l2x3f" path="res://scenes/ui/between_level_ui.tscn" id="1_bporh"]
@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scripts/ui/Camera2D.gd" id="3_s8gdr"]
 [ext_resource type="Texture2D" uid="uid://bt11adu0v17vi" path="res://assets/sprites/button_red.png" id="5_5oy8r"]
 [ext_resource type="Texture2D" uid="uid://bq8ch4f71hvu6" path="res://assets/sprites/button_red_hovered.png" id="6_u0yug"]
+[ext_resource type="Texture2D" uid="uid://cm33tsbltjy8d" path="res://assets/sprites/button_grey.png" id="7_ai4gs"]
+[ext_resource type="AudioStream" uid="uid://1wox5e2i4ksf" path="res://assets/audio/MainMusicLoop.wav" id="8_xnih8"]
 
 [node name="BetweenLevelScene" type="Node2D"]
 script = ExtResource("1_0wowp")
@@ -25,22 +27,112 @@ script = ExtResource("3_s8gdr")
 
 [node name="BetweenLevelUI" parent="." instance=ExtResource("1_bporh")]
 
-[node name="Line2D" type="Line2D" parent="."]
-position = Vector2(503, 531)
-points = PackedVector2Array(19, 17, 535, -283)
-width = 2.0
-default_color = Color(0.156863, 0.156863, 0.156863, 1)
+[node name="ColorRect" type="ColorRect" parent="BetweenLevelUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
-[node name="Button" type="TextureButton" parent="."]
-offset_left = 503.0
-offset_top = 531.0
-offset_right = 631.0
-offset_bottom = 659.0
-scale = Vector2(0.3, 0.3)
+[node name="Lines" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="Lines"]
+points = PackedVector2Array(516, 552, 689, 368)
+width = 3.0
+default_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="Line2D2" type="Line2D" parent="Lines"]
+points = PackedVector2Array(689, 369, 628, 281)
+width = 3.0
+default_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="Line2D3" type="Line2D" parent="Lines"]
+points = PackedVector2Array(689, 369, 984, 441)
+width = 3.0
+default_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="Line2D4" type="Line2D" parent="Lines"]
+points = PackedVector2Array(1147, 236, 984, 441)
+width = 3.0
+default_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="Line2D5" type="Line2D" parent="Lines"]
+points = PackedVector2Array(1240, 442, 984, 441)
+width = 3.0
+default_color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="Level1Button" type="TextureButton" parent="Buttons"]
+offset_left = 504.0
+offset_top = 540.0
+offset_right = 632.0
+offset_bottom = 668.0
+scale = Vector2(0.2, 0.2)
 tooltip_text = "Level: 1
 Difficulty: Easy
 Boss: ???"
 texture_normal = ExtResource("5_5oy8r")
 texture_hover = ExtResource("6_u0yug")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Level2Button" type="TextureButton" parent="Buttons"]
+offset_left = 676.0
+offset_top = 357.0
+offset_right = 804.0
+offset_bottom = 485.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Level: 1
+Difficulty: Easy
+Boss: ???"
+texture_normal = ExtResource("7_ai4gs")
+
+[node name="Level2bButton" type="TextureButton" parent="Buttons"]
+offset_left = 615.0
+offset_top = 269.0
+offset_right = 743.0
+offset_bottom = 397.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Level: 1
+Difficulty: Easy
+Boss: ???"
+texture_normal = ExtResource("7_ai4gs")
+
+[node name="Level3Button" type="TextureButton" parent="Buttons"]
+offset_left = 971.0
+offset_top = 429.0
+offset_right = 1099.0
+offset_bottom = 557.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Level: 1
+Difficulty: Easy
+Boss: ???"
+texture_normal = ExtResource("7_ai4gs")
+
+[node name="Level4aButton" type="TextureButton" parent="Buttons"]
+offset_left = 1135.0
+offset_top = 224.0
+offset_right = 1263.0
+offset_bottom = 352.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Level: 1
+Difficulty: Easy
+Boss: ???"
+texture_normal = ExtResource("7_ai4gs")
+
+[node name="Level4bButton" type="TextureButton" parent="Buttons"]
+offset_left = 1226.0
+offset_top = 431.0
+offset_right = 1354.0
+offset_bottom = 559.0
+scale = Vector2(0.2, 0.2)
+tooltip_text = "Level: 1
+Difficulty: Easy
+Boss: ???"
+texture_normal = ExtResource("7_ai4gs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_xnih8")
+volume_db = -12.064
+
+[connection signal="pressed" from="Buttons/Level1Button" to="." method="_on_button_pressed"]

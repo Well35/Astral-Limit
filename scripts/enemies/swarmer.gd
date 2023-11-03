@@ -10,8 +10,12 @@ var is_dead: bool = false
 
 func _process(delta):
 	if (health <= 0) and not is_dead:
+		velocity = Vector2.ZERO
+		direction = Vector2.ZERO
 		is_dead = true
 		$dead.play()
+		$explosion.show()
+		$AnimationPlayer.play("dead")
 		$Sprite2D.hide()
 		$CollisionPolygon2D.disabled = true
 		var markers = $Markers.get_children()
@@ -21,14 +25,19 @@ func _process(delta):
 			temp.direction = (position - temp.position).normalized()
 			temp.rotation_degrees = rad_to_deg(temp.direction.angle()) + 90
 			get_parent().get_parent().get_child(3).add_child(temp)
-	direction = (Globals.player_pos - position).normalized()
-	look_at(Globals.player_pos)
-	velocity = direction * speed
-	move_and_slide()
+	if not is_dead:
+		direction = (Globals.player_pos - position).normalized()
+		look_at(Globals.player_pos)
+		velocity = direction * speed
+		move_and_slide()
 
 func hit(dmg):
 	health -= dmg
 
 
 func _on_dead_finished():
+	pass
+
+
+func _on_animation_player_animation_finished(anim_name):
 	queue_free()
