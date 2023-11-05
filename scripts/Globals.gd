@@ -11,6 +11,8 @@ var boss_dead: bool
 var outside_play_area: bool = false
 var player_shooting: bool = false
 var player_dashing: bool = false
+var play_area_x: Vector2
+var play_area_y: Vector2
 
 signal boss_health_change
 signal player_health_change

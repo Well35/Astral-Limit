@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvoc1a2k6ys5k"]
+
+[ext_resource type="Script" path="res://scripts/levels/level.gd" id="1_uoolo"]
+[ext_resource type="AudioStream" uid="uid://1wox5e2i4ksf" path="res://assets/audio/MainMusicLoop.wav" id="2_afi4y"]
+[ext_resource type="PackedScene" uid="uid://cxmu2cnh1jgje" path="res://scenes/ui/ui.tscn" id="3_e2rut"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_uoolo")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1024, 1024)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Projectiles" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_afi4y")
+volume_db = -12.064
+
+[node name="PlayArea" type="Area2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("3_e2rut")]
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="OutOfBoundsTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="body_entered" from="PlayArea" to="." method="_on_play_area_body_entered"]
+[connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
+[connection signal="timeout" from="OutOfBoundsTimer" to="." method="_on_out_of_bounds_timer_timeout"]

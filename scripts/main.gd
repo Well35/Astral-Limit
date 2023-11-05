@@ -18,8 +18,12 @@ var wave1_freed: bool = false
 var wave2_freed: bool = false
 var wave3_freed: bool = false
 var boss_stage2: bool = false
+
+var curr_wave: int = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Globals.play_area_x = Vector2(500, 3500)
+	Globals.play_area_y = Vector2(500, 3000)
 	for enemies in $Enemies.get_children():
 		for enemy in enemies.get_children():
 			var marker = radar_mar.instantiate()
@@ -45,23 +49,13 @@ func _ready():
 	$Enemies/Boss/BattlecruiserBoss.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(delta):
+	var waves = $Enemies.get_children()
 	radar_cam.global_position = Globals.player_pos / 12
 	Globals.music_pos = $AudioStreamPlayer.get_playback_position()
-	var enemies = $Enemies.get_children()
-	wave1 = $Enemies/Wave1.get_children()
-	wave2 = $Enemies/Wave2.get_children()
-	wave3 = $Enemies/Wave3.get_children()
-	if wave1.size() == 0 and not wave1_freed:
-		wave1_freed = true
-		for enemy in wave2:
-			enemy.process_mode = Node.PROCESS_MODE_ALWAYS
-	if wave2.size() == 0 and not wave2_freed:
-		wave2_freed = true
-		for enemy in wave3:
-			enemy.process_mode = Node.PROCESS_MODE_ALWAYS
-	if wave3.size() == 0 and not wave3_freed:
-		wave3_freed = true
-		$Enemies/Boss/BattlecruiserBoss.process_mode = Node.PROCESS_MODE_ALWAYS
+	if waves[curr_wave-1].get_children().size() == 0:
+		for enemy in waves[curr_wave].get_children():
+			enemy.process_mode = PROCESS_MODE_ALWAYS
+		curr_wave += 1
 	if Input.is_action_pressed("close"):
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 	if boss_stage2:

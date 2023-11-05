@@ -39,4 +39,3 @@ func update_player_health():
 
 func _on_dread_boss_initial_health_bar(h):
 	$BossHealth.max_value = h
-	$BossHealth.show()

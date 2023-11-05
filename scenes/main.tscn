@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bc4yw12aifuxg"]
+[gd_scene load_steps=13 format=3 uid="uid://bc4yw12aifuxg"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_u5dka"]
 [ext_resource type="PackedScene" uid="uid://cpyakwandr3cb" path="res://scenes/player.tscn" id="1_wfums"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bml5bv47klenv" path="res://scenes/enemies/swarmer.tscn" id="3_5yecd"]
 [ext_resource type="PackedScene" uid="uid://cvg7v0uxtq3is" path="res://scenes/enemies/orbiter.tscn" id="3_8g386"]
 [ext_resource type="PackedScene" uid="uid://covt3eqnjvnq5" path="res://scenes/enemies/simple_enemy.tscn" id="5_fiae3"]
+[ext_resource type="PackedScene" uid="uid://b01nmce75x1a7" path="res://scenes/enemies/mine_layer.tscn" id="6_57lhn"]
 [ext_resource type="PackedScene" uid="uid://bpqthiuvl0rd2" path="res://scenes/enemies/battlecruiser_boss.tscn" id="7_072p8"]
+[ext_resource type="PackedScene" uid="uid://lbdgwddicopq" path="res://scenes/enemies/machine_gun_enemy.tscn" id="7_cnfkp"]
 [ext_resource type="AudioStream" uid="uid://1wox5e2i4ksf" path="res://assets/audio/MainMusicLoop.wav" id="8_um5xn"]
 [ext_resource type="PackedScene" uid="uid://cxmu2cnh1jgje" path="res://scenes/ui/ui.tscn" id="9_pg4vq"]
 
@@ -60,12 +62,6 @@ position = Vector2(4019, 1029)
 [node name="Swarmer7" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
 position = Vector2(4118, 1747)
 
-[node name="Swarmer8" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
-position = Vector2(4181, 2474)
-
-[node name="Swarmer9" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
-position = Vector2(4217, 2070)
-
 [node name="Swarmer10" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
 position = Vector2(4441, 1325)
 
@@ -86,6 +82,12 @@ position = Vector2(1563, -250)
 
 [node name="SimpleEnemy2" parent="Enemies/Wave1" instance=ExtResource("5_fiae3")]
 position = Vector2(4391, 1025)
+
+[node name="MineLayer" parent="Enemies/Wave1" instance=ExtResource("6_57lhn")]
+position = Vector2(581, 583)
+
+[node name="MachineGunEnemy" parent="Enemies/Wave1" instance=ExtResource("7_cnfkp")]
+position = Vector2(1322, 396)
 
 [node name="Wave2" type="Node2D" parent="Enemies"]
 
@@ -127,6 +129,9 @@ position = Vector2(4453, -130)
 
 [node name="SimpleEnemy5" parent="Enemies/Wave2" instance=ExtResource("5_fiae3")]
 position = Vector2(3985, -221)
+
+[node name="MineLayer3" parent="Enemies/Wave2" instance=ExtResource("6_57lhn")]
+position = Vector2(4791, 2884)
 
 [node name="Wave3" type="Node2D" parent="Enemies"]
 

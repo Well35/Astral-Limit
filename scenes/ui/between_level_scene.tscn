@@ -82,7 +82,7 @@ offset_top = 357.0
 offset_right = 804.0
 offset_bottom = 485.0
 scale = Vector2(0.2, 0.2)
-tooltip_text = "Level: 1
+tooltip_text = "Level: 2
 Difficulty: Easy
 Boss: ???"
 texture_normal = ExtResource("7_ai4gs")
@@ -136,3 +136,4 @@ stream = ExtResource("8_xnih8")
 volume_db = -12.064
 
 [connection signal="pressed" from="Buttons/Level1Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Buttons/Level2Button" to="." method="_on_level_2_button_pressed"]

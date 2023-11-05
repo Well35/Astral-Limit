@@ -4,7 +4,7 @@ var bullet: PackedScene = preload("res://scenes/projectiles/enemy_laser.tscn")
 var shotgun_angle = 70
 var shotgun_bullets = 8
 var omni_bullets = 20
-var speed = 50
+var speed = 300
 var direction: Vector2
 var stage2: bool = false
 
@@ -12,9 +12,14 @@ var health = 1000
 
 signal display_health_bar
 signal initial_health_bar(h)
+signal update_location(loc)
+signal free_marker
 
 func _process(delta):
+	if position.distance_to(Globals.player_pos) < 800:
+		speed = 50
 	if health <= 0:
+		free_marker.emit()
 		queue_free()
 	if not stage2:
 		look_at(Globals.player_pos)
@@ -23,6 +28,7 @@ func _process(delta):
 		move_and_slide()
 	else:
 		self.rotation_degrees += .8
+	update_location.emit(global_position)
 
 func _ready():
 	Globals.boss_health = health

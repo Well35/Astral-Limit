@@ -2,7 +2,6 @@ extends Area2D
 
 var laser: PackedScene = preload("res://scenes/projectiles/enemy_laser.tscn")
 
-
 func _on_explosion_timer_timeout():
 	$Sprite2D.hide()
 	var markers = $Markers.get_children()

@@ -17,7 +17,6 @@ script = ExtResource("1_2fhr5")
 texture = ExtResource("2_0nv6i")
 
 [node name="BeamShipCollision" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_rf7db")
 
 [node name="BulletStart" type="Marker2D" parent="."]

@@ -1,7 +1,26 @@
-[gd_scene format=3 uid="uid://b01nmce75x1a7"]
+[gd_scene load_steps=4 format=3 uid="uid://b01nmce75x1a7"]
+
+[ext_resource type="Script" path="res://scripts/enemies/mine_layer.gd" id="1_pmgou"]
+[ext_resource type="Texture2D" uid="uid://2lrslubf1ydj" path="res://assets/sprites/enemies/MineLayer.png" id="2_qw42s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_115tp"]
+size = Vector2(34, 40)
 
 [node name="MineLayer" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_pmgou")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, -1.42109e-14)
+rotation = 1.5708
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_qw42s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_115tp")
+
+[node name="MineLayingTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="MineLayingTimer" to="." method="_on_mine_laying_timer_timeout"]

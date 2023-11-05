@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://lbdgwddicopq"]
+
+[ext_resource type="Script" path="res://scenes/enemies/machine_gun_enemy.gd" id="1_yq1kw"]
+[ext_resource type="Texture2D" uid="uid://byh463jbvcjgs" path="res://assets/sprites/enemies/MachineGunEnemy.png" id="2_ctkpg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4l5rk"]
+size = Vector2(36, 40)
+
+[node name="MachineGunEnemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 15
+script = ExtResource("1_yq1kw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(1.4, 1.4)
+texture = ExtResource("2_ctkpg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4l5rk")
+
+[node name="BulletStart" type="Marker2D" parent="."]
+position = Vector2(18, 0)
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

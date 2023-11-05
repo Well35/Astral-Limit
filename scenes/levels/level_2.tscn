@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxl1eskaoi757"]
+
+[ext_resource type="PackedScene" uid="uid://cvoc1a2k6ys5k" path="res://scenes/levels/level.tscn" id="1_drpbh"]
+[ext_resource type="Script" path="res://scripts/levels/Level2.gd" id="2_3ct3g"]
+[ext_resource type="Texture2D" uid="uid://bd6bxwcbwecw4" path="res://assets/sprites/backgrounds/StarBackground.png" id="3_yrmou"]
+[ext_resource type="PackedScene" uid="uid://lbdgwddicopq" path="res://scenes/enemies/machine_gun_enemy.tscn" id="4_bdep5"]
+[ext_resource type="PackedScene" uid="uid://cpyakwandr3cb" path="res://scenes/player.tscn" id="4_ytyex"]
+[ext_resource type="PackedScene" uid="uid://bgnei1g05hwfn" path="res://scenes/enemies/dread_boss.tscn" id="6_c6p77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nie1t"]
+size = Vector2(4305, 2973.5)
+
+[node name="Level2" instance=ExtResource("1_drpbh")]
+script = ExtResource("2_3ct3g")
+
+[node name="ParallaxLayer" parent="ParallaxBackground" index="0"]
+motion_mirroring = Vector2(3000, 3000)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" index="0"]
+position = Vector2(1552, 1390)
+scale = Vector2(1.6, 1.6)
+texture = ExtResource("3_yrmou")
+
+[node name="Player" parent="." index="1" instance=ExtResource("4_ytyex")]
+position = Vector2(2100, 1670)
+
+[node name="Wave1" type="Node2D" parent="Enemies" index="0"]
+
+[node name="MachineGunEnemy" parent="Enemies/Wave1" index="0" instance=ExtResource("4_bdep5")]
+position = Vector2(-1033, 483)
+
+[node name="Wave2" type="Node2D" parent="Enemies" index="1"]
+
+[node name="MachineGunEnemy3" parent="Enemies/Wave2" index="0" instance=ExtResource("4_bdep5")]
+position = Vector2(5121, 2053)
+
+[node name="Wave3" type="Node2D" parent="Enemies" index="2"]
+
+[node name="MachineGunEnemy2" parent="Enemies/Wave3" index="0" instance=ExtResource("4_bdep5")]
+position = Vector2(5718, 747)
+
+[node name="Wave4" type="Node2D" parent="Enemies" index="3"]
+
+[node name="MachineGunEnemy3" parent="Enemies/Wave4" index="0" instance=ExtResource("4_bdep5")]
+position = Vector2(5194, 3741)
+
+[node name="Wave5" type="Node2D" parent="Enemies" index="4"]
+
+[node name="DreadBoss" parent="Enemies/Wave5" index="0" instance=ExtResource("6_c6p77")]
+position = Vector2(2072, -400)
+
+[node name="PlayArea" parent="." index="5"]
+visible = false
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea" index="0"]
+position = Vector2(1972, 1836)
+shape = SubResource("RectangleShape2D_nie1t")
+
+[connection signal="player_shoot" from="Player" to="." method="_on_player_player_shoot"]
+[connection signal="initial_health_bar" from="Enemies/Wave5/DreadBoss" to="UI" method="_on_dread_boss_initial_health_bar"]
