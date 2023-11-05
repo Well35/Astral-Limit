@@ -12,10 +12,13 @@ var laser_scene = preload("res://scenes/projectiles/enemy_laser.tscn")
 @onready var destination: Vector2
 
 signal enemy_laser(pos, dir)
+signal update_location(loc)
+signal free_marker
 
 func _process(delta):
 	destination = Globals.player_pos
 	if (health <= 0) and not is_dead:
+		free_marker.emit()
 		is_dead = true
 		velocity = Vector2.ZERO
 		direction = Vector2.ZERO
@@ -39,6 +42,7 @@ func _process(delta):
 			can_shoot = false
 			laser_dir = (Globals.player_pos - position).normalized()
 			enemy_laser.emit($BulletStart.global_position, laser_dir)
+	update_location.emit(global_position)
 
 func _on_laser_timer_timeout():
 	can_shoot = true

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://csexxfovnj1xg"]
+
+[ext_resource type="Texture2D" uid="uid://cm33tsbltjy8d" path="res://assets/sprites/button_grey.png" id="1_tcnwv"]
+
+[node name="RadarLevel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_tcnwv")

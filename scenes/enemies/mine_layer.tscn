@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b01nmce75x1a7"]
+
+[node name="MineLayer" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

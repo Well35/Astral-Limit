@@ -5,6 +5,9 @@ var simple_enemy_laser: PackedScene = preload("res://scenes/projectiles/enemy_la
 var swarmer: PackedScene = preload("res://scenes/enemies/swarmer.tscn")
 var orbiter_bullet: PackedScene = preload("res://scenes/projectiles/orbiter_bullet.tscn")
 var bomb_scene: PackedScene = preload("res://scenes/projectiles/bomb.tscn")
+var radar_mar = preload("res://scenes/enemies/radar_marker.tscn")
+@onready var radar_level = $UI/SubViewportContainer/SubViewport/RadarLevel
+@onready var radar_cam = $UI/SubViewportContainer/SubViewport/RadarLevel/Camera2D
 @onready var boss = $Enemies/Boss/BattlecruiserBoss
 
 @onready var wave1 = $Enemies/Wave1.get_children()
@@ -17,6 +20,13 @@ var wave3_freed: bool = false
 var boss_stage2: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for enemies in $Enemies.get_children():
+		for enemy in enemies.get_children():
+			var marker = radar_mar.instantiate()
+			marker.global_position = Vector2.ZERO
+			radar_level.add_child(marker)
+			enemy.update_location.connect(marker.on_update_location)
+			enemy.free_marker.connect(marker.on_free_marker)
 	#$UI/ColorRect.show()
 	#var fade_time = 1
 	#var tween = get_tree().create_tween()
@@ -35,6 +45,7 @@ func _ready():
 	$Enemies/Boss/BattlecruiserBoss.process_mode = Node.PROCESS_MODE_DISABLED
 
 func _process(delta):
+	radar_cam.global_position = Globals.player_pos / 12
 	Globals.music_pos = $AudioStreamPlayer.get_playback_position()
 	var enemies = $Enemies.get_children()
 	wave1 = $Enemies/Wave1.get_children()

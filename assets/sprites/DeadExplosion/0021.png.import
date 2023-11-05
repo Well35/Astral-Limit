@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfbf1fsnbala0"
-path="res://.godot/imported/gameplay_example.png-6c8a1bdd37d187aa2d833c7fe7f894d6.ctex"
+uid="uid://b7232t1jyhlxj"
+path="res://.godot/imported/0021.png-fa7fd46f22dc8c8d30e4e01d5096a920.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gameplay_example.png"
-dest_files=["res://.godot/imported/gameplay_example.png-6c8a1bdd37d187aa2d833c7fe7f894d6.ctex"]
+source_file="res://assets/sprites/DeadExplosion/0021.png"
+dest_files=["res://.godot/imported/0021.png-fa7fd46f22dc8c8d30e4e01d5096a920.ctex"]
 
 [params]
 

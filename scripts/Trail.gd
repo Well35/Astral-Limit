@@ -1,7 +1,7 @@
 extends Line2D
 
 @onready var parent = get_parent()
-var length = 6
+var length = 4
 
 func _ready():
 	top_level = true

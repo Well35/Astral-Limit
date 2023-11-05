@@ -8,8 +8,12 @@ var direction: Vector2
 @onready var start: Vector2
 var is_dead: bool = false
 
+signal update_location(loc)
+signal free_marker
+
 func _process(delta):
 	if (health <= 0) and not is_dead:
+		free_marker.emit()
 		velocity = Vector2.ZERO
 		direction = Vector2.ZERO
 		is_dead = true
@@ -30,6 +34,7 @@ func _process(delta):
 		look_at(Globals.player_pos)
 		velocity = direction * speed
 		move_and_slide()
+	update_location.emit(global_position)
 
 func hit(dmg):
 	health -= dmg

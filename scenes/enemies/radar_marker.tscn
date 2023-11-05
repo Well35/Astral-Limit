@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dua0pj6tuofc8"]
+
+[ext_resource type="Texture2D" uid="uid://bt11adu0v17vi" path="res://assets/sprites/button_red.png" id="1_p6yo1"]
+[ext_resource type="Script" path="res://scripts/enemies/radar_marker.gd" id="2_3mmcb"]
+
+[node name="RadarMarker" type="Sprite2D"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_p6yo1")
+script = ExtResource("2_3mmcb")

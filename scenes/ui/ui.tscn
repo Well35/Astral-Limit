@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxmu2cnh1jgje"]
+[gd_scene load_steps=4 format=3 uid="uid://cxmu2cnh1jgje"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_neafe"]
 [ext_resource type="Texture2D" uid="uid://cwfxbsabukfh0" path="res://assets/sprites/PlayerHealth.png" id="2_uv6mm"]
+[ext_resource type="PackedScene" uid="uid://csexxfovnj1xg" path="res://scenes/radar_level.tscn" id="3_ffv4p"]
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_neafe")
@@ -65,3 +66,27 @@ texture = ExtResource("2_uv6mm")
 [node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_uv6mm")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.867
+anchor_right = 1.0
+anchor_bottom = 0.237
+offset_left = -0.640137
+offset_bottom = 0.039978
+grow_horizontal = 0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="RadarLevel" parent="SubViewportContainer/SubViewport" instance=ExtResource("3_ffv4p")]
+
+[node name="FpsCounter" type="Label" parent="."]
+anchors_preset = -1
+anchor_right = 0.048
+anchor_bottom = 0.024
+offset_right = 0.839996
+offset_bottom = 0.0799999
+text = "FPS: 10"

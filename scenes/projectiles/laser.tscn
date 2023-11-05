@@ -10,7 +10,7 @@
 blend_mode = 1
 
 [sub_resource type="Curve" id="Curve_0e7bx"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.762887, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_cuii4"]

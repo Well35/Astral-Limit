@@ -8,6 +8,8 @@ func _ready():
 	$BossHealth.value = Globals.boss_health
 
 func _process(delta):
+	var fps: String = "FPS: %s" % [Engine.get_frames_per_second()]
+	$FpsCounter.text = fps
 	if Globals.boss_health < 0:
 		$BossHealth.hide()
 	if Globals.outside_play_area:
@@ -30,3 +32,11 @@ func update_player_health():
 	var hearts = $MarginContainer/HBoxContainer.get_children()
 	var temp = hearts.back()
 	temp.queue_free()
+
+
+#func _on_dread_boss_display_health_bar():
+#	$BossHealth.show()
+
+func _on_dread_boss_initial_health_bar(h):
+	$BossHealth.max_value = h
+	$BossHealth.show()

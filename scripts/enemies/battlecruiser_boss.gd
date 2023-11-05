@@ -26,6 +26,8 @@ signal spawn_swarmers
 signal on_screen
 signal bomb
 signal stage2_over
+signal update_location(loc)
+signal free_marker
 
 func _ready():
 	direction = (position - start_location).normalized()
@@ -33,6 +35,7 @@ func _ready():
 
 func _process(delta):
 	if Globals.boss_health <= 0:
+		free_marker.emit()
 		velocity = Vector2.ZERO
 		direction = Vector2.ZERO
 		can_shoot = false
@@ -81,6 +84,7 @@ func _process(delta):
 		velocity.x = 0
 		velocity = velocity.limit_length(speed)
 		move_and_slide()
+	update_location.emit(global_position)
 
 func _on_laser_reload_timer_timeout():
 	can_shoot = true

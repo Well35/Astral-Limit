@@ -41,19 +41,9 @@ texture = ExtResource("2_x8ee3")
 [node name="Player" parent="." instance=ExtResource("1_wfums")]
 position = Vector2(1940, 1541)
 
-[node name="PlayArea" type="Area2D" parent="."]
-collision_mask = 17
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea"]
-position = Vector2(2079.78, 1864.43)
-shape = SubResource("RectangleShape2D_36l1i")
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Wave1" type="Node2D" parent="Enemies"]
-
-[node name="Orbiter2" parent="Enemies/Wave1" instance=ExtResource("3_8g386")]
-position = Vector2(-1068, 2037)
 
 [node name="Swarmer" parent="Enemies/Wave1" instance=ExtResource("3_5yecd")]
 position = Vector2(445, -183)
@@ -214,6 +204,13 @@ position = Vector2(2302, -282)
 stream = ExtResource("8_um5xn")
 volume_db = -12.064
 
+[node name="PlayArea" type="Area2D" parent="."]
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea"]
+position = Vector2(2079.78, 1864.43)
+shape = SubResource("RectangleShape2D_36l1i")
+
 [node name="BossStart" type="Marker2D" parent="."]
 position = Vector2(1979, 465)
 
@@ -252,9 +249,6 @@ position = Vector2(-1227, 2551)
 position = Vector2(5116, 2031)
 
 [connection signal="player_shoot" from="Player" to="." method="_on_player_player_shoot"]
-[connection signal="body_entered" from="PlayArea" to="." method="_on_play_area_body_entered"]
-[connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
-[connection signal="orbiter_shoot" from="Enemies/Wave1/Orbiter2" to="." method="_on_orbiter_orbiter_shoot"]
 [connection signal="enemy_laser" from="Enemies/Wave1/SimpleEnemy" to="." method="_on_simple_enemy_enemy_laser"]
 [connection signal="enemy_laser" from="Enemies/Wave1/SimpleEnemy3" to="." method="_on_simple_enemy_enemy_laser"]
 [connection signal="enemy_laser" from="Enemies/Wave1/SimpleEnemy4" to="." method="_on_simple_enemy_enemy_laser"]
@@ -276,5 +270,7 @@ position = Vector2(5116, 2031)
 [connection signal="on_screen" from="Enemies/Boss/BattlecruiserBoss" to="UI" method="_on_battlecruiser_boss_on_screen"]
 [connection signal="spawn_swarmers" from="Enemies/Boss/BattlecruiserBoss" to="." method="_on_battlecruiser_boss_spawn_swarmers"]
 [connection signal="stage2_over" from="Enemies/Boss/BattlecruiserBoss" to="." method="_on_battlecruiser_boss_stage_2_over"]
+[connection signal="body_entered" from="PlayArea" to="." method="_on_play_area_body_entered"]
+[connection signal="body_exited" from="PlayArea" to="." method="_on_play_area_body_exited"]
 [connection signal="timeout" from="BossBombTimer" to="." method="_on_boss_bomb_timer_timeout"]
 [connection signal="timeout" from="OutOfBoundsTimer" to="." method="_on_out_of_bounds_timer_timeout"]

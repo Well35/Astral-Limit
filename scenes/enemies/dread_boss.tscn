@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgnei1g05hwfn"]
+
+[ext_resource type="Texture2D" uid="uid://c3vch4r6f6s43" path="res://assets/sprites/enemies/DreadBoss.png" id="1_owksg"]
+[ext_resource type="Script" path="res://scripts/enemies/dread_boss.gd" id="1_qwe71"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4quex"]
+size = Vector2(88, 60)
+
+[node name="DreadBoss" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+collision_layer = 4
+collision_mask = 13
+script = ExtResource("1_qwe71")
+
+[node name="BaseSprite" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_owksg")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4quex")
+
+[node name="FrontShotMarker" type="Marker2D" parent="."]
+position = Vector2(42, 0)
+
+[node name="MidShotMarker" type="Marker2D" parent="."]
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
+
+[node name="OmniShotTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Stage1Timer" type="Timer" parent="."]
+wait_time = 25.0
+one_shot = true
+autostart = true
+
+[node name="Stage2Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
+[connection signal="timeout" from="OmniShotTimer" to="." method="_on_omni_shot_timer_timeout"]
+[connection signal="timeout" from="Stage1Timer" to="." method="_on_stage_switch_timer_timeout"]
+[connection signal="timeout" from="Stage2Timer" to="." method="_on_stage_2_timer_timeout"]
