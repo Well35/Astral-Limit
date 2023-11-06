@@ -8,14 +8,21 @@ var boss_dest: Vector2
 var boss_right: Vector2
 var boss_left: Vector2
 var boss_dead: bool
+var level_over: bool
 var outside_play_area: bool = false
 var player_shooting: bool = false
 var player_dashing: bool = false
 var play_area_x: Vector2
 var play_area_y: Vector2
+var levels_completed: Array[bool]
+var total_levels = 2
 
 signal boss_health_change
 signal player_health_change
+
+func _ready():
+	for i in range(total_levels):
+		levels_completed.append(false)
 
 var boss_health = 500:
 	get:

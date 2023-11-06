@@ -87,7 +87,7 @@ Difficulty: Easy
 Boss: ???"
 texture_normal = ExtResource("7_ai4gs")
 
-[node name="Level2bButton" type="TextureButton" parent="Buttons"]
+[node name="Level3Button2" type="TextureButton" parent="Buttons"]
 offset_left = 615.0
 offset_top = 269.0
 offset_right = 743.0
@@ -98,7 +98,7 @@ Difficulty: Easy
 Boss: ???"
 texture_normal = ExtResource("7_ai4gs")
 
-[node name="Level3Button" type="TextureButton" parent="Buttons"]
+[node name="Level4Button" type="TextureButton" parent="Buttons"]
 offset_left = 971.0
 offset_top = 429.0
 offset_right = 1099.0
@@ -109,7 +109,7 @@ Difficulty: Easy
 Boss: ???"
 texture_normal = ExtResource("7_ai4gs")
 
-[node name="Level4aButton" type="TextureButton" parent="Buttons"]
+[node name="Level5Button" type="TextureButton" parent="Buttons"]
 offset_left = 1135.0
 offset_top = 224.0
 offset_right = 1263.0
@@ -120,7 +120,7 @@ Difficulty: Easy
 Boss: ???"
 texture_normal = ExtResource("7_ai4gs")
 
-[node name="Level4bButton" type="TextureButton" parent="Buttons"]
+[node name="Level6Button" type="TextureButton" parent="Buttons"]
 offset_left = 1226.0
 offset_top = 431.0
 offset_right = 1354.0

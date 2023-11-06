@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://lbdgwddicopq"]
 
-[ext_resource type="Script" path="res://scenes/enemies/machine_gun_enemy.gd" id="1_yq1kw"]
+[ext_resource type="Script" path="res://scripts/enemies/machine_gun_enemy.gd" id="1_yq1kw"]
 [ext_resource type="Texture2D" uid="uid://byh463jbvcjgs" path="res://assets/sprites/enemies/MachineGunEnemy.png" id="2_ctkpg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4l5rk"]

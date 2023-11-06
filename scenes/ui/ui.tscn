@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxmu2cnh1jgje"]
+[gd_scene load_steps=5 format=3 uid="uid://cxmu2cnh1jgje"]
 
 [ext_resource type="Script" path="res://scripts/ui/ui.gd" id="1_neafe"]
+[ext_resource type="PackedScene" uid="uid://c3djq8pqasaao" path="res://scenes/ui/heart.tscn" id="2_o66nn"]
 [ext_resource type="Texture2D" uid="uid://cwfxbsabukfh0" path="res://assets/sprites/PlayerHealth.png" id="2_uv6mm"]
 [ext_resource type="PackedScene" uid="uid://csexxfovnj1xg" path="res://scenes/radar_level.tscn" id="3_ffv4p"]
 
@@ -55,9 +56,8 @@ theme_override_constants/margin_top = 30
 layout_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+[node name="TextureRect" parent="MarginContainer/HBoxContainer" instance=ExtResource("2_o66nn")]
 layout_mode = 2
-texture = ExtResource("2_uv6mm")
 
 [node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -90,3 +90,22 @@ anchor_bottom = 0.024
 offset_right = 0.839996
 offset_bottom = 0.0799999
 text = "FPS: 10"
+
+[node name="PlayerHealthRegen" type="ProgressBar" parent="."]
+anchors_preset = -1
+anchor_left = 0.004
+anchor_top = 0.058
+anchor_right = 0.084
+anchor_bottom = 0.083
+offset_left = 0.32
+offset_top = 0.359997
+offset_right = 0.719986
+offset_bottom = 0.359993
+max_value = 5.0
+show_percentage = false
+
+[node name="HealthIncreaseTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="HealthIncreaseTimer" to="." method="_on_health_increase_timer_timeout"]

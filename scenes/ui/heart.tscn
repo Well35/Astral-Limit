@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3djq8pqasaao"]
+
+[ext_resource type="Texture2D" uid="uid://cwfxbsabukfh0" path="res://assets/sprites/PlayerHealth.png" id="1_hi0ux"]
+
+[node name="TextureRect" type="TextureRect"]
+texture = ExtResource("1_hi0ux")

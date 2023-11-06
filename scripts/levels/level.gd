@@ -25,9 +25,12 @@ func _process(delta):
 	radar_cam.global_position = Globals.player_pos / 12
 	Globals.music_pos = $AudioStreamPlayer.get_playback_position()
 	if waves[curr_wave-1].get_children().size() == 0:
-		for enemy in waves[curr_wave].get_children():
-			enemy.process_mode = PROCESS_MODE_ALWAYS
-		curr_wave += 1
+		if curr_wave == waves.size():
+			Globals.level_over = true
+		else:
+			for enemy in waves[curr_wave].get_children():
+				enemy.process_mode = PROCESS_MODE_ALWAYS
+			curr_wave += 1
 	if Input.is_action_pressed("close"):
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 	if $OutOfBoundsTimer.time_left > 0:

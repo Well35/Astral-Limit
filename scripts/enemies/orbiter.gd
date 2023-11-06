@@ -11,9 +11,10 @@ var at_destination: bool = false
 var direction: Vector2 = Vector2.ZERO
 @onready var destination: Vector2
 @onready var can_shoot: bool = false
+var laser_scene = preload("res://scenes/projectiles/orbiter_bullet.tscn")
 var is_dead: bool = false
 
-signal orbiter_shoot(pos, dir)
+#signal orbiter_shoot(pos, dir)
 signal update_location(loc)
 signal free_marker
 
@@ -50,7 +51,11 @@ func _process(delta):
 	if can_shoot and not is_dead:
 		$BulletTimer.start()
 		can_shoot = false
-		orbiter_shoot.emit($BulletStart.global_position, (Globals.player_pos - position).normalized())
+		var temp = laser_scene.instantiate()
+		temp.position = $BulletStart.global_position
+		temp.direction = (Globals.player_pos - position).normalized()
+		temp.rotation_degrees = rad_to_deg(temp.direction.angle()) + 90
+		get_parent().get_parent().get_child(3).add_child(temp)
 	update_location.emit(global_position)
 
 func hit(dmg):

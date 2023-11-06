@@ -11,6 +11,9 @@ var is_dead: bool = false
 signal update_location(loc)
 signal free_marker
 
+func _ready():
+	$AnimationPlayer.play("Engine")
+
 func _process(delta):
 	if (health <= 0) and not is_dead:
 		free_marker.emit()
@@ -45,4 +48,7 @@ func _on_dead_finished():
 
 
 func _on_animation_player_animation_finished(anim_name):
-	queue_free()
+	if anim_name == "dead":
+		queue_free()
+	elif anim_name == "Engine":
+		$AnimationPlayer.play("Engine")

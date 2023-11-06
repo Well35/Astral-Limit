@@ -32,17 +32,17 @@ position = Vector2(-1033, 483)
 [node name="Wave2" type="Node2D" parent="Enemies" index="1"]
 
 [node name="MachineGunEnemy3" parent="Enemies/Wave2" index="0" instance=ExtResource("4_bdep5")]
-position = Vector2(5121, 2053)
+position = Vector2(4829, 2023)
 
 [node name="Wave3" type="Node2D" parent="Enemies" index="2"]
 
 [node name="MachineGunEnemy2" parent="Enemies/Wave3" index="0" instance=ExtResource("4_bdep5")]
-position = Vector2(5718, 747)
+position = Vector2(-904, 1745)
 
 [node name="Wave4" type="Node2D" parent="Enemies" index="3"]
 
 [node name="MachineGunEnemy3" parent="Enemies/Wave4" index="0" instance=ExtResource("4_bdep5")]
-position = Vector2(5194, 3741)
+position = Vector2(4871, 3741)
 
 [node name="Wave5" type="Node2D" parent="Enemies" index="4"]
 

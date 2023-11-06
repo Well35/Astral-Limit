@@ -128,5 +128,5 @@ func _on_stage_2_timer_timeout():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "dead":
-		get_tree().change_scene_to_file("res://scenes/ui/end_screen.tscn")
+		#get_tree().change_scene_to_file("res://scenes/ui/end_screen.tscn")
 		queue_free()

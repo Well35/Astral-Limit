@@ -11,7 +11,7 @@ var laser_scene = preload("res://scenes/projectiles/enemy_laser.tscn")
 @onready var start: Vector2
 @onready var destination: Vector2
 
-signal enemy_laser(pos, dir)
+#signal enemy_laser(pos, dir)
 signal update_location(loc)
 signal free_marker
 
@@ -40,8 +40,12 @@ func _process(delta):
 		if can_shoot and not is_dead:
 			$LaserTimer.start()
 			can_shoot = false
-			laser_dir = (Globals.player_pos - position).normalized()
-			enemy_laser.emit($BulletStart.global_position, laser_dir)
+			var laser = laser_scene.instantiate()
+			laser.direction = (Globals.player_pos - position).normalized()
+			laser.position = $BulletStart.global_position
+			laser.rotation_degrees = rad_to_deg(laser.direction.angle()) + 90
+			get_parent().get_parent().get_child(3).add_child(laser)
+			#enemy_laser.emit($BulletStart.global_position, laser_dir)
 	update_location.emit(global_position)
 
 func _on_laser_timer_timeout():

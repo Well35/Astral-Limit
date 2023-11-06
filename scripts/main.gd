@@ -53,9 +53,13 @@ func _process(delta):
 	radar_cam.global_position = Globals.player_pos / 12
 	Globals.music_pos = $AudioStreamPlayer.get_playback_position()
 	if waves[curr_wave-1].get_children().size() == 0:
-		for enemy in waves[curr_wave].get_children():
-			enemy.process_mode = PROCESS_MODE_ALWAYS
-		curr_wave += 1
+		if curr_wave == waves.size():
+			Globals.levels_completed[0] = true
+			get_tree().change_scene_to_file("res://scenes/ui/between_level_scene.tscn")
+		else:
+			for enemy in waves[curr_wave].get_children():
+				enemy.process_mode = PROCESS_MODE_ALWAYS
+			curr_wave += 1
 	if Input.is_action_pressed("close"):
 		get_tree().change_scene_to_file("res://scenes/ui/main_menu.tscn")
 	if boss_stage2:
@@ -74,31 +78,17 @@ func _on_player_player_shoot(pos, dir):
 	laser.rotation_degrees = rad_to_deg(dir.angle()) + 90
 	$Projectiles.add_child(laser)
 
-func _on_orbiter_orbiter_shoot(pos, dir):
-	var bullet = orbiter_bullet.instantiate()
-	bullet.position = pos
-	bullet.direction = dir
-	bullet.rotation_degrees = rad_to_deg(dir.angle()) + 90
-	$Projectiles.add_child(bullet)
-
-
-func _on_simple_enemy_enemy_laser(pos, dir):
-	var laser = simple_enemy_laser.instantiate()
-	laser.position = pos
-	laser.direction = dir
-	laser.rotation_degrees = rad_to_deg(dir.angle()) + 90
-	$Projectiles.add_child(laser)
-
-
 func _on_battlecruiser_boss_spawn_swarmers():
-	var x = randi_range(3,8)
+	pass
+	"""
+	var x = randi_range(1,3)
 	var spawns = $SwarmerSpawns.get_children()
 	var e = randi_range(0,spawns.size()-1)
 	for i in range(x):
 		var enemy = swarmer.instantiate()
 		enemy.position = spawns[e].position
-		$Enemies/Boss.add_child(enemy)
-
+		$Enemies/Wave1.add_child(enemy)
+	"""
 
 func _on_battlecruiser_boss_bomb():
 	$BossBombTimer.start()
