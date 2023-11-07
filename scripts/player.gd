@@ -12,14 +12,22 @@ var is_dashing: bool = false
 var direction: Vector2
 var dash_direction: Vector2
 
+var is_idle: bool = true
+var idle_anim_playing: bool = false
+var moving_anim_playing: bool = false
+
 signal player_shoot(pos, dir)
 
 func _ready():
+	$AnimationPlayer.play("EngineIdle")
 	Globals.player_pos = position
 
 func _process(delta):
+	look_at(get_global_mouse_position())
+	print(global_rotation)
 	if not is_dashing:
 		direction = Input.get_vector("left", "right", "up", "down")
+		#direction = direction.rotated(rad_to_deg(global_rotation - PI / 2))
 	if direction == Vector2.ZERO:
 		if velocity.length() > friction * delta:
 			velocity -= velocity.normalized() * friction * delta
@@ -32,7 +40,10 @@ func _process(delta):
 		dash_direction = direction
 		velocity = dash_direction * dash_speed
 	move_and_slide()
-	look_at(get_global_mouse_position())
+	if direction != Vector2.ZERO:
+		is_idle = false
+	else:
+		is_idle = true
 	Globals.player_pos = position
 	if Input.is_action_pressed("shoot") and can_shoot:
 		is_shooting = true
@@ -55,6 +66,18 @@ func _process(delta):
 		if $ShootingSound.get_playback_position() == 0:
 			$ShootingSound.play()
 	Globals.player_dashing = is_dashing
+	if is_idle and not idle_anim_playing:
+		$AnimationPlayer.play("EngineIdle")
+		$EngineIdle.show()
+		$EngineMoving.hide()
+		idle_anim_playing = true
+		moving_anim_playing = false
+	elif not is_idle and not moving_anim_playing:
+		$AnimationPlayer.play("EngineMoving")
+		$EngineIdle.hide()
+		$EngineMoving.show()
+		idle_anim_playing = false
+		moving_anim_playing = true
 
 func _on_laser_timer_timeout():
 	can_shoot = true
@@ -84,3 +107,10 @@ func _on_dash_duration_timeout():
 	is_dashing = false
 	set_collision_layer_value(1, true)
 	immune = false
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "EngineIdle":
+		idle_anim_playing = false
+	if anim_name == "EngineMoving":
+		moving_anim_playing = false

@@ -2,6 +2,8 @@ extends level
 
 func _ready():
 	super._ready()
+	Globals.play_area_x = Vector2(-100, 4000)
+	Globals.play_area_y = Vector2(500, 3000)
 
 func _process(delta):
 	super._process(delta)

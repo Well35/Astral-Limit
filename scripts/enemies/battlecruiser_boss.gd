@@ -14,7 +14,7 @@ var health: int = 500
 var max_health: int = 500
 var accel = 1200
 var friction = 800
-
+var laser: PackedScene = preload("res://scenes/projectiles/enemy_laser.tscn")
 var stage1: bool = true
 var stage2: bool = false
 var stage3: bool = false
@@ -60,14 +60,27 @@ func _process(delta):
 			can_shoot = true
 			on_screen.emit()
 		if can_shoot:
+			#this needs to be rewritten
 			$LaserReloadTimer.start()
 			can_shoot = false
-			var dir = Vector2.DOWN
-			enemy_laser.emit($MiddleLaser.global_position, dir)
-			dir = Vector2(.6,1)
-			enemy_laser.emit($LeftLaser.global_position, dir)
-			dir = Vector2(-.6, 1)
-			enemy_laser.emit($RightLaser.global_position, dir)
+			var l = laser.instantiate()
+			l.direction = Vector2.DOWN
+			l.position = $MiddleLaser.global_position
+			l.rotation_degrees = rad_to_deg(l.direction.angle()) + 90
+			get_parent().get_parent().get_child(3).add_child(l)
+			#enemy_laser.emit($MiddleLaser.global_position, dir)
+			l = laser.instantiate()
+			l.direction = Vector2(.6,1)
+			l.position = $MiddleLaser.global_position
+			l.rotation_degrees = rad_to_deg(l.direction.angle()) + 90
+			get_parent().get_parent().get_child(3).add_child(l)
+			#enemy_laser.emit($LeftLaser.global_position, dir)
+			l = laser.instantiate()
+			l.direction = Vector2(-.6,1)
+			l.position = $MiddleLaser.global_position
+			l.rotation_degrees = rad_to_deg(l.direction.angle()) + 90
+			get_parent().get_parent().get_child(3).add_child(l)
+			#enemy_laser.emit($RightLaser.global_position, dir)
 		if at_start:
 			if at_right:
 				direction = Vector2.LEFT

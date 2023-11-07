@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxl1eskaoi757"]
+[gd_scene load_steps=11 format=3 uid="uid://dxl1eskaoi757"]
 
 [ext_resource type="PackedScene" uid="uid://cvoc1a2k6ys5k" path="res://scenes/levels/level.tscn" id="1_drpbh"]
 [ext_resource type="Script" path="res://scripts/levels/Level2.gd" id="2_3ct3g"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://lbdgwddicopq" path="res://scenes/enemies/machine_gun_enemy.tscn" id="4_bdep5"]
 [ext_resource type="PackedScene" uid="uid://cpyakwandr3cb" path="res://scenes/player.tscn" id="4_ytyex"]
 [ext_resource type="PackedScene" uid="uid://bgnei1g05hwfn" path="res://scenes/enemies/dread_boss.tscn" id="6_c6p77"]
+[ext_resource type="PackedScene" uid="uid://covt3eqnjvnq5" path="res://scenes/enemies/simple_enemy.tscn" id="6_tcju5"]
+[ext_resource type="PackedScene" uid="uid://bml5bv47klenv" path="res://scenes/enemies/swarmer.tscn" id="7_oj8qh"]
+[ext_resource type="PackedScene" uid="uid://b01nmce75x1a7" path="res://scenes/enemies/mine_layer.tscn" id="8_xa4ha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nie1t"]
 size = Vector2(4305, 2973.5)
@@ -27,30 +30,146 @@ position = Vector2(2100, 1670)
 [node name="Wave1" type="Node2D" parent="Enemies" index="0"]
 
 [node name="MachineGunEnemy" parent="Enemies/Wave1" index="0" instance=ExtResource("4_bdep5")]
-position = Vector2(-1033, 483)
+position = Vector2(245, 771)
+
+[node name="SimpleEnemy" parent="Enemies/Wave1" index="1" instance=ExtResource("6_tcju5")]
+position = Vector2(252, 1276)
+
+[node name="MachineGunEnemy2" parent="Enemies/Wave1" index="2" instance=ExtResource("4_bdep5")]
+position = Vector2(3391, 942)
+
+[node name="Swarmer" parent="Enemies/Wave1" index="3" instance=ExtResource("7_oj8qh")]
+position = Vector2(3739, 1597)
+
+[node name="Swarmer2" parent="Enemies/Wave1" index="4" instance=ExtResource("7_oj8qh")]
+position = Vector2(3688, 1297)
+
+[node name="Swarmer3" parent="Enemies/Wave1" index="5" instance=ExtResource("7_oj8qh")]
+position = Vector2(3424, 2596)
 
 [node name="Wave2" type="Node2D" parent="Enemies" index="1"]
 
 [node name="MachineGunEnemy3" parent="Enemies/Wave2" index="0" instance=ExtResource("4_bdep5")]
 position = Vector2(4829, 2023)
 
+[node name="Swarmer4" parent="Enemies/Wave2" index="1" instance=ExtResource("7_oj8qh")]
+position = Vector2(-1031, 1471)
+
+[node name="Swarmer5" parent="Enemies/Wave2" index="2" instance=ExtResource("7_oj8qh")]
+position = Vector2(-917, 2576)
+
+[node name="Swarmer6" parent="Enemies/Wave2" index="3" instance=ExtResource("7_oj8qh")]
+position = Vector2(810, 3954)
+
+[node name="Swarmer7" parent="Enemies/Wave2" index="4" instance=ExtResource("7_oj8qh")]
+position = Vector2(2886, 3897)
+
+[node name="SimpleEnemy2" parent="Enemies/Wave2" index="5" instance=ExtResource("6_tcju5")]
+position = Vector2(-1213, 959)
+
+[node name="SimpleEnemy3" parent="Enemies/Wave2" index="6" instance=ExtResource("6_tcju5")]
+position = Vector2(6474, 1405)
+
+[node name="MineLayer" parent="Enemies/Wave2" index="7" instance=ExtResource("8_xa4ha")]
+position = Vector2(903, -238)
+
 [node name="Wave3" type="Node2D" parent="Enemies" index="2"]
 
 [node name="MachineGunEnemy2" parent="Enemies/Wave3" index="0" instance=ExtResource("4_bdep5")]
 position = Vector2(-904, 1745)
+
+[node name="MachineGunEnemy3" parent="Enemies/Wave3" index="1" instance=ExtResource("4_bdep5")]
+position = Vector2(-129, 3980)
+
+[node name="MachineGunEnemy4" parent="Enemies/Wave3" index="2" instance=ExtResource("4_bdep5")]
+position = Vector2(5313, 1275)
+
+[node name="MineLayer2" parent="Enemies/Wave3" index="3" instance=ExtResource("8_xa4ha")]
+position = Vector2(4630, -238)
 
 [node name="Wave4" type="Node2D" parent="Enemies" index="3"]
 
 [node name="MachineGunEnemy3" parent="Enemies/Wave4" index="0" instance=ExtResource("4_bdep5")]
 position = Vector2(4871, 3741)
 
+[node name="MachineGunEnemy4" parent="Enemies/Wave4" index="1" instance=ExtResource("4_bdep5")]
+position = Vector2(5135, 420)
+
+[node name="Swarmer8" parent="Enemies/Wave4" index="2" instance=ExtResource("7_oj8qh")]
+position = Vector2(2010, 3998)
+
+[node name="Swarmer9" parent="Enemies/Wave4" index="3" instance=ExtResource("7_oj8qh")]
+position = Vector2(3610, 3909)
+
+[node name="Swarmer10" parent="Enemies/Wave4" index="4" instance=ExtResource("7_oj8qh")]
+position = Vector2(5172, 2760)
+
 [node name="Wave5" type="Node2D" parent="Enemies" index="4"]
 
-[node name="DreadBoss" parent="Enemies/Wave5" index="0" instance=ExtResource("6_c6p77")]
+[node name="SimpleEnemy4" parent="Enemies/Wave5" index="0" instance=ExtResource("6_tcju5")]
+position = Vector2(-885, 296)
+
+[node name="SimpleEnemy5" parent="Enemies/Wave5" index="1" instance=ExtResource("6_tcju5")]
+position = Vector2(5287, -125)
+
+[node name="SimpleEnemy6" parent="Enemies/Wave5" index="2" instance=ExtResource("6_tcju5")]
+position = Vector2(5173, 830)
+
+[node name="SimpleEnemy7" parent="Enemies/Wave5" index="3" instance=ExtResource("6_tcju5")]
+position = Vector2(5073, 3503)
+
+[node name="Wave6" type="Node2D" parent="Enemies" index="5"]
+
+[node name="Swarmer11" parent="Enemies/Wave6" index="0" instance=ExtResource("7_oj8qh")]
+position = Vector2(5011, 3000)
+
+[node name="Swarmer12" parent="Enemies/Wave6" index="1" instance=ExtResource("7_oj8qh")]
+position = Vector2(5011, 1104)
+
+[node name="Swarmer13" parent="Enemies/Wave6" index="2" instance=ExtResource("7_oj8qh")]
+position = Vector2(4968, 234)
+
+[node name="Swarmer14" parent="Enemies/Wave6" index="3" instance=ExtResource("7_oj8qh")]
+position = Vector2(2773, -365)
+
+[node name="Swarmer15" parent="Enemies/Wave6" index="4" instance=ExtResource("7_oj8qh")]
+position = Vector2(-506, -308)
+
+[node name="Swarmer16" parent="Enemies/Wave6" index="5" instance=ExtResource("7_oj8qh")]
+position = Vector2(-28, -315)
+
+[node name="Swarmer17" parent="Enemies/Wave6" index="6" instance=ExtResource("7_oj8qh")]
+position = Vector2(172, -379)
+
+[node name="Swarmer18" parent="Enemies/Wave6" index="7" instance=ExtResource("7_oj8qh")]
+position = Vector2(806, -422)
+
+[node name="MineLayer3" parent="Enemies/Wave6" index="8" instance=ExtResource("8_xa4ha")]
+position = Vector2(4879, 3361)
+
+[node name="Wave7" type="Node2D" parent="Enemies" index="6"]
+
+[node name="MachineGunEnemy5" parent="Enemies/Wave7" index="0" instance=ExtResource("4_bdep5")]
+position = Vector2(-1072, 3118)
+
+[node name="MachineGunEnemy6" parent="Enemies/Wave7" index="1" instance=ExtResource("4_bdep5")]
+position = Vector2(-1117, 2409)
+
+[node name="MachineGunEnemy7" parent="Enemies/Wave7" index="2" instance=ExtResource("4_bdep5")]
+position = Vector2(-1135, 1852)
+
+[node name="SimpleEnemy4" parent="Enemies/Wave7" index="3" instance=ExtResource("6_tcju5")]
+position = Vector2(-1213, 959)
+
+[node name="SimpleEnemy5" parent="Enemies/Wave7" index="4" instance=ExtResource("6_tcju5")]
+position = Vector2(5297, -298)
+
+[node name="Wave8" type="Node2D" parent="Enemies" index="7"]
+
+[node name="DreadBoss" parent="Enemies/Wave8" index="0" instance=ExtResource("6_c6p77")]
 position = Vector2(2072, -400)
 
 [node name="PlayArea" parent="." index="5"]
-visible = false
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea" index="0"]
@@ -58,4 +177,4 @@ position = Vector2(1972, 1836)
 shape = SubResource("RectangleShape2D_nie1t")
 
 [connection signal="player_shoot" from="Player" to="." method="_on_player_player_shoot"]
-[connection signal="initial_health_bar" from="Enemies/Wave5/DreadBoss" to="UI" method="_on_dread_boss_initial_health_bar"]
+[connection signal="initial_health_bar" from="Enemies/Wave8/DreadBoss" to="UI" method="_on_dread_boss_initial_health_bar"]

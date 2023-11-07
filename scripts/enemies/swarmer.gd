@@ -24,6 +24,7 @@ func _process(delta):
 		$explosion.show()
 		$AnimationPlayer.play("dead")
 		$Sprite2D.hide()
+		$Engine.hide()
 		$CollisionPolygon2D.disabled = true
 		var markers = $Markers.get_children()
 		for m in markers:
