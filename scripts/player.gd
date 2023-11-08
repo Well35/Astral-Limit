@@ -24,10 +24,8 @@ func _ready():
 
 func _process(delta):
 	look_at(get_global_mouse_position())
-	print(global_rotation)
 	if not is_dashing:
 		direction = Input.get_vector("left", "right", "up", "down")
-		#direction = direction.rotated(rad_to_deg(global_rotation - PI / 2))
 	if direction == Vector2.ZERO:
 		if velocity.length() > friction * delta:
 			velocity -= velocity.normalized() * friction * delta

@@ -41,10 +41,13 @@ position = Vector2(3391, 942)
 [node name="Swarmer" parent="Enemies/Wave1" index="3" instance=ExtResource("7_oj8qh")]
 position = Vector2(3739, 1597)
 
-[node name="Swarmer2" parent="Enemies/Wave1" index="4" instance=ExtResource("7_oj8qh")]
+[node name="Swarmer4" parent="Enemies/Wave1" index="4" instance=ExtResource("7_oj8qh")]
+position = Vector2(3739, 1597)
+
+[node name="Swarmer2" parent="Enemies/Wave1" index="5" instance=ExtResource("7_oj8qh")]
 position = Vector2(3688, 1297)
 
-[node name="Swarmer3" parent="Enemies/Wave1" index="5" instance=ExtResource("7_oj8qh")]
+[node name="Swarmer3" parent="Enemies/Wave1" index="6" instance=ExtResource("7_oj8qh")]
 position = Vector2(3424, 2596)
 
 [node name="Wave2" type="Node2D" parent="Enemies" index="1"]
