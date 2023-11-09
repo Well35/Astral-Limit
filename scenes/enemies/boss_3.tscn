@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm3me86s3v6g4"]
+
+[ext_resource type="Texture2D" uid="uid://bi2c6vjy1jfw4" path="res://assets/sprites/enemies/Boss3.png" id="1_ptxhk"]
+[ext_resource type="Script" path="res://scripts/enemies/boss_3.gd" id="1_wyhqg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws7bb"]
+size = Vector2(90, 70)
+
+[node name="Boss3" type="CharacterBody2D"]
+script = ExtResource("1_wyhqg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_ptxhk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ws7bb")

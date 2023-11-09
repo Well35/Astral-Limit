@@ -1,9 +1,11 @@
 extends Node2D
 
+#TODO: refactor code in this file to inherit from the base level script
+##     also need to remove most references to the Globals script/most of the current signals
+
 var temp_shoot: PackedScene = preload("res://scenes/projectiles/laser.tscn")
 var simple_enemy_laser: PackedScene = preload("res://scenes/projectiles/enemy_laser.tscn")
 var swarmer: PackedScene = preload("res://scenes/enemies/swarmer.tscn")
-var orbiter_bullet: PackedScene = preload("res://scenes/projectiles/orbiter_bullet.tscn")
 var bomb_scene: PackedScene = preload("res://scenes/projectiles/bomb.tscn")
 var radar_mar = preload("res://scenes/enemies/radar_marker.tscn")
 @onready var radar_level = $UI/SubViewportContainer/SubViewport/RadarLevel
@@ -14,13 +16,9 @@ var radar_mar = preload("res://scenes/enemies/radar_marker.tscn")
 @onready var wave2 = $Enemies/Wave2.get_children()
 @onready var wave3 = $Enemies/Wave3.get_children()
 
-var wave1_freed: bool = false
-var wave2_freed: bool = false
-var wave3_freed: bool = false
 var boss_stage2: bool = false
 
 var curr_wave: int = 1
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	Globals.play_area_x = Vector2(500, 3500)
 	Globals.play_area_y = Vector2(500, 3000)
@@ -31,17 +29,11 @@ func _ready():
 			radar_level.add_child(marker)
 			enemy.update_location.connect(marker.on_update_location)
 			enemy.free_marker.connect(marker.on_free_marker)
-	#$UI/ColorRect.show()
-	#var fade_time = 1
-	#var tween = get_tree().create_tween()
-	#tween.tween_property($UI/ColorRect, "modulate:a", 0, fade_time)
 	Globals.fade_in_scene($UI/ColorRect)
 	$AudioStreamPlayer.play(Globals.music_pos)
 	Globals.boss_dest = $BossStart.position
 	Globals.boss_right = $BossRightStrafe.position
 	Globals.boss_left = $BossLeftStrafe.position
-	#for enemy in wave1:
-	#	enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	for enemy in wave2:
 		enemy.process_mode = Node.PROCESS_MODE_DISABLED
 	for enemy in wave3:
