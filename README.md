@@ -22,7 +22,7 @@ Astral Limit can soon be downloaded for free on both Itch.io and the Steam marke
 3. Open your version of Godot and click on the import button
 4. Find and click on the project.godot file located in your Astral Limit directory
 5. The project can now be viewed like any other Godot project
-6. While in the project, Press f5 to play the game in its current state
+6. While in the project, press f5 to play the game in its current state
 
 ## Goals for Astral Limit
 
