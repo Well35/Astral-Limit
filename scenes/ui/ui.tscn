@@ -105,7 +105,7 @@ max_value = 5.0
 show_percentage = false
 
 [node name="HealthIncreaseTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 6.0
 autostart = true
 
 [connection signal="timeout" from="HealthIncreaseTimer" to="." method="_on_health_increase_timer_timeout"]

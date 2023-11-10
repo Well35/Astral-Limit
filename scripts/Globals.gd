@@ -15,7 +15,7 @@ var player_dashing: bool = false
 var play_area_x: Vector2
 var play_area_y: Vector2
 var levels_completed: Array[bool]
-var total_levels = 2
+var total_levels = 3
 
 signal boss_health_change
 signal player_health_change
