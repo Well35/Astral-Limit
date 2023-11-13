@@ -87,7 +87,7 @@ Difficulty: Easy
 Boss: ???"
 texture_normal = ExtResource("7_ai4gs")
 
-[node name="Level3Button2" type="TextureButton" parent="Buttons"]
+[node name="Level3Button" type="TextureButton" parent="Buttons"]
 offset_left = 615.0
 offset_top = 269.0
 offset_right = 743.0
@@ -137,3 +137,4 @@ volume_db = -12.064
 
 [connection signal="pressed" from="Buttons/Level1Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Buttons/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="Buttons/Level3Button" to="." method="_on_level_3_button_pressed"]

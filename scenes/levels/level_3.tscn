@@ -55,7 +55,25 @@ position = Vector2(-1796, 4153)
 
 [node name="Wave3" type="Node2D" parent="Enemies" index="2"]
 
+[node name="MachineGunEnemy3" parent="Enemies/Wave3" index="0" instance=ExtResource("6_0b8pj")]
+position = Vector2(693, -1016)
+
+[node name="MachineGunEnemy4" parent="Enemies/Wave3" index="1" instance=ExtResource("6_0b8pj")]
+position = Vector2(-1859, -1966)
+
+[node name="SimpleEnemy4" parent="Enemies/Wave3" index="2" instance=ExtResource("5_li35l")]
+position = Vector2(5080, 1938)
+
 [node name="Wave4" type="Node2D" parent="Enemies" index="3"]
+
+[node name="MachineGunEnemy5" parent="Enemies/Wave4" index="0" instance=ExtResource("6_0b8pj")]
+position = Vector2(693, -1016)
+
+[node name="MachineGunEnemy6" parent="Enemies/Wave4" index="1" instance=ExtResource("6_0b8pj")]
+position = Vector2(-1859, -1966)
+
+[node name="SimpleEnemy5" parent="Enemies/Wave4" index="2" instance=ExtResource("5_li35l")]
+position = Vector2(5080, 1938)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea" index="0"]
 position = Vector2(2053.94, 1688.19)

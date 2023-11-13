@@ -36,7 +36,7 @@ func _on_reload_timer_timeout():
 	laser_instance.direction = (Globals.player_pos - position).normalized().rotated(deg_to_rad(rand_angle))
 	laser_instance.rotation_degrees = rad_to_deg(laser_instance.direction.angle()) + 90
 	laser_instance.speed = 500
-	get_parent().get_parent().get_child(3).add_child(laser_instance)
+	get_parent().get_parent().get_parent().get_child(3).add_child(laser_instance)
 
 func hit(dmg):
 	health -= dmg

@@ -55,7 +55,7 @@ func _process(delta):
 		temp.position = $BulletStart.global_position
 		temp.direction = (Globals.player_pos - position).normalized()
 		temp.rotation_degrees = rad_to_deg(temp.direction.angle()) + 90
-		get_parent().get_parent().get_child(3).add_child(temp)
+		get_parent().get_parent().get_parent().get_child(3).add_child(temp)
 	update_location.emit(global_position)
 
 func hit(dmg):

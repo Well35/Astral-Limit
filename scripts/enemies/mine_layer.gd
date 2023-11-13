@@ -33,7 +33,7 @@ func calculate_destination():
 func _on_mine_laying_timer_timeout():
 	var mine_instance = mine.instantiate()
 	mine_instance.position = position
-	get_parent().get_parent().get_child(3).add_child(mine_instance)
+	get_parent().get_parent().get_parent().get_child(3).add_child(mine_instance)
 
 func hit(dmg):
 	health -= dmg

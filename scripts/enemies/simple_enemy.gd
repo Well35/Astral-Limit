@@ -44,7 +44,7 @@ func _process(delta):
 			laser.direction = (Globals.player_pos - position).normalized()
 			laser.position = $BulletStart.global_position
 			laser.rotation_degrees = rad_to_deg(laser.direction.angle()) + 90
-			get_parent().get_parent().get_child(3).add_child(laser)
+			get_parent().get_parent().get_parent().get_child(3).add_child(laser)
 			#enemy_laser.emit($BulletStart.global_position, laser_dir)
 	update_location.emit(global_position)
 

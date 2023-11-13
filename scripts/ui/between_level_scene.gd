@@ -26,3 +26,8 @@ func _on_button_pressed():
 func _on_level_2_button_pressed():
 	if Globals.levels_completed[0] == true:
 		get_tree().change_scene_to_file("res://scenes/levels/level_2.tscn")
+
+
+func _on_level_3_button_pressed():
+	if Globals.levels_completed[1] == true:
+		get_tree().change_scene_to_file("res://scenes/levels/level_3.tscn")

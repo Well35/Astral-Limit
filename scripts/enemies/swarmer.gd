@@ -32,7 +32,7 @@ func _process(delta):
 			temp.position = m.global_position
 			temp.direction = (position - temp.position).normalized()
 			temp.rotation_degrees = rad_to_deg(temp.direction.angle()) + 90
-			get_parent().get_parent().get_child(3).add_child(temp)
+			get_parent().get_parent().get_parent().get_child(3).add_child(temp)
 	if not is_dead:
 		direction = (Globals.player_pos - position).normalized()
 		look_at(Globals.player_pos)
