@@ -10,7 +10,7 @@
 
 ## Getting the game
 
-Astral Limit can soon be downloaded for free on both Itch.io and the Steam marketplace
+Astral Limit can soon be downloaded for free on both Itch.io and eventually the Steam marketplace
 
 ## Accessing the code
 
@@ -26,7 +26,7 @@ Astral Limit can soon be downloaded for free on both Itch.io and the Steam marke
 
 ## Goals for Astral Limit
 
-Astral Limit is currently in an early development stage, with many features subject to change. Below are many gameplay systems we plan to add by the end of 2024.
+Astral Limit is currently in an early development stage, with many features subject to change. Below are many gameplay systems we plan to add in the coming months.
 
 - Player
   - Dashing
